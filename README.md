@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![alt text](AirBnB.png)
 
 ## API Documentation
 
@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId
+  * URL: /me
   * Body: none
 
 * Successful Response
@@ -252,7 +252,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/spots
+  * URL: /me/spots
   * Body: none
 
 * Successful Response
@@ -291,7 +291,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots/:spotId/details
+  * URL: /spots/:spotId
   * Body: none
 
 * Successful Response
@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/reviews
+  * URL: /me/reviews
   * Body: none
 
 * Successful Response
@@ -837,7 +837,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/bookings
+  * URL: /me/bookings
   * Body: none
 
 * Successful Response
@@ -1251,7 +1251,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: DELETE
-  * URL: /users/:userId/images/:imageId
+  * URL: /images/:imageId
   * Body: none
 
 * Successful Response
