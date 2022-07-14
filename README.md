@@ -317,7 +317,11 @@ Returns the details of a spot specified by its id.
       "updatedAt": "2021-11-19 20:39:36" ,
       "numReviews": 5,
       "avgStarRating": 4.5,
+<<<<<<< HEAD
       "images": [
+=======
+      "Images": [
+>>>>>>> dev
         {
           "id": 1,
           "imageableId": 1,
@@ -588,13 +592,21 @@ Returns all the reviews written by the current user.
             "name": "App Academy",
             "price": 123
           },
+<<<<<<< HEAD
           "images": [
+=======
+          "Images": [
+>>>>>>> dev
             {
               "id": 1,
               "imageableId": 1,
               "url": "image url"
             }
+<<<<<<< HEAD
           ]
+=======
+          ],
+>>>>>>> dev
         }
       ]
     }
@@ -632,13 +644,21 @@ Returns all the reviews that belong to a spot specified by id.
             "firstName": "John",
             "lastName": "Smith"
           },
+<<<<<<< HEAD
           "images": [
+=======
+          "Images": [
+>>>>>>> dev
             {
               "id": 1,
               "imageableId": 1,
               "url": "image url"
             }
+<<<<<<< HEAD
           ]
+=======
+          ],
+>>>>>>> dev
         }
       ]
     }
