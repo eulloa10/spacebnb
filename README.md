@@ -589,7 +589,11 @@ Returns all the reviews written by the current user.
             "price": 123
           },
           "images": [
-            "image url"
+            {
+              "id": 1,
+              "imageableId": 1,
+              "url": "image url"
+            }
           ]
         }
       ]
@@ -629,7 +633,11 @@ Returns all the reviews that belong to a spot specified by id.
             "lastName": "Smith"
           },
           "images": [
-            "image url"
+            {
+              "id": 1,
+              "imageableId": 1,
+              "url": "image url"
+            }
           ]
         }
       ]
@@ -1167,8 +1175,7 @@ Create and return a new image for a spot specified by id.
     {
       "id": 1,
       "imageableId": 1,
-      "imageableType": "Spot",
-      "url": "image url",
+      "url": "image url"
     }
     ```
 
@@ -1214,8 +1221,7 @@ Create and return a new image for a review specified by id.
     {
       "id": 1,
       "imageableId": 1,
-      "imageableType": "Review",
-      "url": "image url",
+      "url": "image url"
     }
     ```
 
