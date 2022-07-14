@@ -318,7 +318,11 @@ Returns the details of a spot specified by its id.
       "numReviews": 5,
       "avgStarRating": 4.5,
       "images": [
-        "image url"
+        {
+          "id": 1,
+          "imageableId": 1,
+          "url": "image url"
+        }
       ],
       "Owner": {
         "id": 1,
