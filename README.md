@@ -6,7 +6,9 @@
 
 ## API Documentation
 
-## All endpoints that require authentication
+## FEATURE 0: USER AUTHORIZATION
+
+### All endpoints that require authentication
 
 All endpoints that require a current user to be logged in.
 
@@ -24,7 +26,7 @@ All endpoints that require a current user to be logged in.
     }
     ```
 
-## All endpoints that require proper authorization
+### All endpoints that require proper authorization
 
 All endpoints that require authentication and the current user does not have the
 correct role(s) or permission(s).
@@ -43,7 +45,7 @@ correct role(s) or permission(s).
     }
     ```
 
-## Get the Current User
+### Get the Current User
 
 Returns the information about the current user that is logged in.
 
@@ -68,7 +70,7 @@ Returns the information about the current user that is logged in.
     }
     ```
 
-## Log In a User
+### Log In a User
 
 Logs in a current user with valid credentials and returns the current user's
 information.
@@ -134,7 +136,7 @@ information.
     }
     ```
 
-## Sign Up a User
+### Sign Up a User
 
 Creates a new user, logs them in as the current user, and returns the current
 user's information.
@@ -206,7 +208,9 @@ user's information.
     }
     ```
 
-## Get all Spots
+## FEATURE 1: SPOTS FEATURE
+
+### Get all Spots
 
 Returns all the spots.
 
@@ -245,7 +249,7 @@ Returns all the spots.
     }
     ```
 
-## Get all Spots owned by the Current User
+### Get all Spots owned by the Current User
 
 Returns all the spots owned (created) by the current user.
 
@@ -284,7 +288,7 @@ Returns all the spots owned (created) by the current user.
     }
     ```
 
-## Get details of a Spot from an id
+### Get details of a Spot from an id
 
 Returns the details of a spot specified by its id.
 
@@ -317,7 +321,7 @@ Returns the details of a spot specified by its id.
       "updatedAt": "2021-11-19 20:39:36" ,
       "numReviews": 5,
       "avgStarRating": 4.5,
-      "images": [
+      "Images": [
         {
           "id": 1,
           "imageableId": 1,
@@ -345,7 +349,7 @@ Returns the details of a spot specified by its id.
     }
     ```
 
-## Create a Spot
+### Create a Spot
 
 Creates and returns a new spot.
 
@@ -419,7 +423,7 @@ Creates and returns a new spot.
     }
     ```
 
-## Edit a Spot
+### Edit a Spot
 
 Updates and returns an existing spot.
 
@@ -507,7 +511,7 @@ Updates and returns an existing spot.
     }
     ```
 
-## Delete a Spot
+### Delete a Spot
 
 Deletes an existing spot.
 
@@ -544,7 +548,9 @@ Deletes an existing spot.
     }
     ```
 
-## Get all Reviews of the Current User
+## FEATURE 2: REVIEWS FEATURE
+
+### Get all Reviews of the Current User
 
 Returns all the reviews written by the current user.
 
@@ -588,9 +594,7 @@ Returns all the reviews written by the current user.
             "name": "App Academy",
             "price": 123
           },
-
-          "images": [
-
+          "Images": [
             {
               "id": 1,
               "imageableId": 1,
@@ -602,7 +606,7 @@ Returns all the reviews written by the current user.
     }
     ```
 
-## Get all Reviews by a Spot's id
+### Get all Reviews by a Spot's id
 
 Returns all the reviews that belong to a spot specified by id.
 
@@ -634,8 +638,7 @@ Returns all the reviews that belong to a spot specified by id.
             "firstName": "John",
             "lastName": "Smith"
           },
-          "images": [
-
+          "Images": [
             {
               "id": 1,
               "imageableId": 1,
@@ -660,7 +663,7 @@ Returns all the reviews that belong to a spot specified by id.
     }
     ```
 
-## Create a Review for a Spot based on the Spot's id
+### Create a Review for a Spot based on the Spot's id
 
 Create and return a new review for a spot specified by id.
 
@@ -680,7 +683,7 @@ Create and return a new review for a spot specified by id.
     ```
 
 * Successful Response
-  * Status Code: 200
+  * Status Code: 201
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -740,7 +743,7 @@ Create and return a new review for a spot specified by id.
     }
     ```
 
-## Edit a Review
+### Edit a Review
 
 Update and return an existing review.
 
@@ -808,7 +811,7 @@ Update and return an existing review.
     }
     ```
 
-## Delete a Review
+### Delete a Review
 
 Delete an existing review.
 
@@ -844,8 +847,9 @@ Delete an existing review.
       "statusCode": 404
     }
     ```
+## FEATURE 3: BOOKINGS FEATURE
 
-## Get all of the Current User's Bookings
+### Get all of the Current User's Bookings
 
 Return all the bookings that the current user has made.
 
@@ -882,7 +886,7 @@ Return all the bookings that the current user has made.
           },
           "userId": 2,
           "startDate": "2021-11-19",
-          "endDate": "2021-11-19",
+          "endDate": "2021-11-20",
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36"
         }
@@ -890,7 +894,7 @@ Return all the bookings that the current user has made.
     }
     ```
 
-## Get all Bookings for a Spot based on the Spot's id
+### Get all Bookings for a Spot based on the Spot's id
 
 Return all the bookings for a spot specified by id.
 
@@ -912,7 +916,7 @@ Return all the bookings for a spot specified by id.
         {
           "spotId": 1,
           "startDate": "2021-11-19",
-          "endDate": "2021-11-19"
+          "endDate": "2021-11-20"
         }
       ]
     }
@@ -937,7 +941,7 @@ Return all the bookings for a spot specified by id.
           "spotId": 1,
           "userId": 2,
           "startDate": "2021-11-19",
-          "endDate": "2021-11-19",
+          "endDate": "2021-11-20",
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36"
         }
@@ -958,7 +962,7 @@ Return all the bookings for a spot specified by id.
     }
     ```
 
-## Create a Booking from a Spot based on the Spot's id
+### Create a Booking from a Spot based on the Spot's id
 
 Create and return a new booking from a spot specified by id.
 
@@ -967,7 +971,14 @@ Create and return a new booking from a spot specified by id.
 * Request
   * Method: POST
   * URL: /spots/:spotId/bookings
-  * Body: none
+  * Body:
+
+    ```json
+    {
+      "startDate": "2021-11-19",
+      "endDate": "2021-11-20"
+    }
+    ```
 
 * Successful Response
   * Status Code: 200
@@ -981,9 +992,25 @@ Create and return a new booking from a spot specified by id.
       "spotId": 1,
       "userId": 2,
       "startDate": "2021-11-19",
-      "endDate": "2021-11-19",
+      "endDate": "2021-11-20",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36"
+    }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "endDate": "endDate cannot be on or before startDate"
+      }
     }
     ```
 
@@ -1017,7 +1044,7 @@ Create and return a new booking from a spot specified by id.
     }
     ```
 
-## Edit a Booking
+### Edit a Booking
 
 Update and return an existing booking.
 
@@ -1033,7 +1060,7 @@ Update and return an existing booking.
     ```json
     {
       "startDate": "2021-11-19",
-      "endDate": "2021-11-19"
+      "endDate": "2021-11-20"
     }
     ```
 
@@ -1049,9 +1076,25 @@ Update and return an existing booking.
       "spotId": 1,
       "userId": 2,
       "startDate": "2021-11-19",
-      "endDate": "2021-11-19",
+      "endDate": "2021-11-20",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-20 10:06:40"
+    }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Validation error",
+      "statusCode": 400,
+      "errors": {
+        "endDate": "endDate cannot come before startDate"
+      }
     }
     ```
 
@@ -1069,7 +1112,7 @@ Update and return an existing booking.
     ```
 
 * Error response: Can't edit a booking that's past the end date
-  * Status Code: 400
+  * Status Code: 403
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1077,7 +1120,7 @@ Update and return an existing booking.
     ```json
     {
       "message": "Past bookings can't be modified",
-      "statusCode": 400
+      "statusCode": 403
     }
     ```
 
@@ -1098,7 +1141,7 @@ Update and return an existing booking.
     }
     ```
 
-## Delete a Booking
+### Delete a Booking
 
 Delete an existing booking.
 
@@ -1136,8 +1179,8 @@ Delete an existing booking.
     }
     ```
 
-* Error response: Can't delete a booking that's past the start date
-  * Status Code: 400
+* Error response: Bookings that have been started can't be deleted
+  * Status Code: 403
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1145,11 +1188,13 @@ Delete an existing booking.
     ```json
     {
       "message": "Bookings that have been started can't be deleted",
-      "statusCode": 400
+      "statusCode": 403
     }
     ```
 
-## Add an Image to a Spot based on the Spot's id
+## FEATURE 4: IMAGES FEATURE
+
+### Add an Image to a Spot based on the Spot's id
 
 Create and return a new image for a spot specified by id.
 
@@ -1178,7 +1223,7 @@ Create and return a new image for a spot specified by id.
     {
       "id": 1,
       "imageableId": 1,
-      "url": "image url"
+      "url": "image url",
     }
     ```
 
@@ -1195,7 +1240,7 @@ Create and return a new image for a spot specified by id.
     }
     ```
 
-## Add an Image to a Review based on the Review's id
+### Add an Image to a Review based on the Review's id
 
 Create and return a new image for a review specified by id.
 
@@ -1224,7 +1269,7 @@ Create and return a new image for a review specified by id.
     {
       "id": 1,
       "imageableId": 1,
-      "url": "image url"
+      "url": "image url",
     }
     ```
 
@@ -1243,7 +1288,7 @@ Create and return a new image for a review specified by id.
 
 * Error response: Cannot add any more images because there is a maximum of 10
   images per resource
-  * Status Code: 400
+  * Status Code: 403
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1251,17 +1296,16 @@ Create and return a new image for a review specified by id.
     ```json
     {
       "message": "Maximum number of images for this resource was reached",
-      "statusCode": 400
+      "statusCode": 403
     }
     ```
 
-## Delete an Image
+### Delete an Image
 
 Delete an existing image.
 
 * Require Authentication: true
-* Require proper authorization: Image must belong to the current user through
-  the image's imageableId and imageableType
+* Require proper authorization: Image must belong to the current user
 * Request
   * Method: DELETE
   * URL: /images/:imageId
@@ -1360,8 +1404,8 @@ Return spots filtered by query parameters.
         "minLat": "Minimum latitude is invalid",
         "minLng": "Maximum longitude is invalid",
         "maxLng": "Minimum longitude is invalid",
-        "minPrice": "Maximum price must be greater than 0",
-        "maxPrice": "Minimum price must be greater than 0"
+        "minPrice": "Maximum price must be greater than or equal to 0",
+        "maxPrice": "Minimum price must be greater than or equal to 0"
       }
     }
     ```
