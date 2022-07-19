@@ -46,10 +46,26 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      // define association here
+      User.hasMany(
+        models.Booking,
+        {foreignKey: 'userId'}
+      )
+
+      User.hasMany(
+        models.Spot,
+        {foreignKey:'userId'}
+      )
     }
   }
   User.init({
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -76,6 +92,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60,60]
       }
+    },
+    isOwner: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   }, {
     sequelize,

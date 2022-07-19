@@ -8,6 +8,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
+      firstName: {
+        type: Sequelize.STRING(20),
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.STRING(20),
+        allowNull: false,
+      },
       username: {
         type: Sequelize.STRING(30),
         allowNull: false,
@@ -20,6 +28,10 @@ module.exports = {
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
+        allowNull: false
+      },
+      isOwner: {
+        type: Sequelize.BOOLEAN,
         allowNull: false
       },
       createdAt: {
