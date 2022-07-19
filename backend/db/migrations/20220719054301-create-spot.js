@@ -24,6 +24,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      zipcode: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       country: {
         type: Sequelize.STRING,
         allowNull: false
