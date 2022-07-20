@@ -27,7 +27,7 @@ router.post(
   async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
     const user = await User.signup({ firstName, lastName, email, password });
-    console.log('signed up user')
+
     await setTokenCookie(res, user);
 
     return res.json({
