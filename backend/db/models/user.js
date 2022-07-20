@@ -55,6 +55,17 @@ module.exports = (sequelize, DataTypes) => {
         models.Spot,
         {foreignKey:'userId'}
       )
+
+      User.hasMany(
+        models.Review,
+        {
+          foreignKey:'reviewableId',
+          constrains: false,
+          scope: {
+            reviewableType: 'user'
+          }
+        }
+      )
     }
   }
   User.init({
