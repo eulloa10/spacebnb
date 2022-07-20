@@ -12,12 +12,20 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Image.belongsTo(
         models.Review,
-        {foreignKey: 'imageableId'}
+        {
+          foreignKey: 'imageableId',
+          onDelete: 'cascade',
+          constraints: false
+        }
       )
 
       Image.belongsTo(
         models.Spot,
-        {foreignKey:'imageableId'}
+        {
+          foreignKey:'imageableId',
+          onDelete: 'cascade',
+          constraints: false
+        }
       )
     }
   }
