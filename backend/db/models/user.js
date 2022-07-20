@@ -93,8 +93,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     isOwner: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
+      type: DataTypes.BOOLEAN
     }
   }, {
     sequelize,
