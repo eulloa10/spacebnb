@@ -16,7 +16,7 @@ const validateSignup = [
   check('lastName')
     .exists({ checkFalsy: true })
     .isLength({min: 2})
-    .withMessage('Please provide your lastname.'),
+    .withMessage('Please provide your last name.'),
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
@@ -39,7 +39,11 @@ router.post(
     await setTokenCookie(res, user);
 
     return res.json({
-      user
+      "id": user.id,
+      "firstName": user.firstName,
+      "lastName": user.lastName,
+      "email": user.email,
+      "token": ""
     });
   }
 );
