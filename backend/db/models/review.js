@@ -12,26 +12,48 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Review.hasMany(
         models.Image,
-        {foreignKey:'imageableId'}
+        {
+          foreignKey:'imageableId',
+          constraints: false,
+          scope: {
+            imageableType: 'review'
+          }
+        }
       )
 
       Review.belongsTo(
         models.User,
-        {foreignKey:'userId'}
+        {
+          foreignKey:'reviewableId',
+          onDelete: 'cascade',
+          constraints: false
+        }
       )
 
       Review.belongsTo(
         models.Spot,
-        {foreignKey: 'spotId'}
+        {
+          foreignKey: 'reviewableId',
+          onDelete: 'cascade',
+          constraints: false
+        }
       )
     }
   }
   Review.init({
-    userId: {
+    // userId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false
+    // },
+    // spotId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false
+    // },
+    reviewableId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    spotId: {
+    reviewableType: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
