@@ -8,22 +8,19 @@ module.exports = {
         firstName: 'John',
         lastName: 'Doe',
         email: 'demo@user.io',
-        hashedPassword: bcrypt.hashSync('password'),
-        isOwner: true
+        hashedPassword: bcrypt.hashSync('password')
       },
       {
         firstName: 'John',
         lastName: 'Joe',
         email: 'user1@user.io',
-        hashedPassword: bcrypt.hashSync('password2'),
-        isOwner: false
+        hashedPassword: bcrypt.hashSync('password2')
       },
       {
         firstName: 'John',
         lastName: 'Moe',
         email: 'user2@user.io',
-        hashedPassword: bcrypt.hashSync('password3'),
-        isOwner: false
+        hashedPassword: bcrypt.hashSync('password3')
       }
     ], {});
   },
