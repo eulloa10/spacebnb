@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       Spot.belongsTo(
         models.User,
         {
-          foreignKey:'userId',
+          foreignKey:'ownerId',
           onDelete: 'cascade'
         }
       )
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Spot.init({
-    userId: {
+    ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -71,11 +71,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     lng: {
-      type: DataTypes.STRING,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     description: {
@@ -83,7 +83,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     price: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     previewImage: {

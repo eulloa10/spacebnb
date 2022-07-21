@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      ownerId: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
@@ -33,11 +33,11 @@ module.exports = {
         allowNull: false
       },
       lat: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: false
       },
       lng: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: false
       },
       name: {
@@ -49,7 +49,7 @@ module.exports = {
         allowNull: false
       },
       price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       previewImage: {
