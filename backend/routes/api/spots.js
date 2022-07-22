@@ -48,9 +48,6 @@ router.get(
       },
       include: [
         {
-          model: Review
-        },
-        {
           model: Image,
           attributes: [
             'id',
