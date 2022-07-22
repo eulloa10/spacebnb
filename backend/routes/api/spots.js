@@ -5,6 +5,7 @@ const { User, Image, Spot, Review } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { Sequelize } = require('sequelize');
 
 
 const router = express.Router();
@@ -42,14 +43,11 @@ router.get(
 router.get(
   '/:id',
   async (req, res) => {
-    const spotDetails = await Spot.findOne({
-      where: {
-        id: req.params.id
-      },
+
+    const spotId = Number(req.params.id)
+
+    const spotDetails = await Spot.findByPk(spotId, {
       include: [
-        {
-          model: Review
-        },
         {
           model: Image,
           attributes: [
@@ -63,12 +61,44 @@ router.get(
           as: 'Owner'
         }
       ]
+    });
 
-    });
+
+    if (!spotDetails) {
+      let err = new Error("Spot couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    const reviews = await Review.findAll({
+      where: {
+        reviewableId: spotId
+      },
+      attributes: [
+        [Sequelize.fn('COUNT', Sequelize.col('review')), 'numReviews']
+      ]
+    })
+
+    const reviewCount = reviews[0].dataValues.numReviews
+    spotDetails.dataValues['numReviews'] = reviewCount
+
+    const ratings = await Review.findAll({
+      where: {
+        reviewableId: spotId
+      },
+      attributes: [
+        [Sequelize.fn('SUM', Sequelize.col('stars')), 'sumOfStars']
+      ]
+    })
+
+    const ratingSum = ratings[0].dataValues.sumOfStars
+
+    const avgStarRating = (ratingSum / reviewCount).toFixed(1)
+
+    spotDetails.dataValues['avgStarRating'] = avgStarRating;
+
     res.status(200);
-    res.json({
-      spotDetails
-    });
+    res.json(spotDetails);
   }
 );
 

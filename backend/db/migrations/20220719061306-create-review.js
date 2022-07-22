@@ -2,10 +2,14 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Reviews', {
-      reviewableId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      reviewableId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       reviewableType: {
