@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Image } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -34,6 +34,28 @@ router.get(
     res.status(200);
     res.json({
       "Spots":allSpots
+    });
+  }
+);
+
+// Return spot details by id
+router.get(
+  '/:id',
+  async (req, res) => {
+    const spotDetails = await Spot.findOne({
+      where: {id: req.params.id},
+      include: [
+        {
+          model: Image
+        },
+        {
+          model: User
+        }
+    ]
+    });
+    res.status(200);
+    res.json({
+      spotDetails
     });
   }
 );
