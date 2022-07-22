@@ -3,7 +3,7 @@ const router = require('express').Router();
 // const imagesRouter = require('./images.js');
 // const reviewsRouter = require('./reviews.js');
 // const sessionRouter = require('./session.js');
-// const signinRouter = require('./signin.js');
+const signinRouter = require('./signin.js');
 // const signupRouter = require('./signup.js');
 const spotsRouter = require('./spots.js');
 const usersRouter = require('./users.js');
@@ -15,6 +15,7 @@ const { requireAuth } = require('../../utils/auth.js');
 
 router.use(restoreUser);
 
+router.use('/signin', signinRouter)
 // router.use('/bookings', bookingsRouter);
 // router.use('/images', imagesRouter);
 // router.use('/reviews', reviewsRouter);
