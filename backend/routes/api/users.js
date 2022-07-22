@@ -1,5 +1,6 @@
 const express = require('express');
 const { requireAuth, restoreUser } = require('../../utils/auth');
+const { Spot } = require('../../db/models')
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.get(
   [requireAuth, restoreUser],
   (req, res) => {
     const { user } = req;
-    console.log("REQ", req.cookies.token)
+
     if (user) {
       return res.json({
         id: user.id,
@@ -19,6 +20,39 @@ router.get(
         token: req.cookies.token
       });
     } else return res.json({});
+  }
+);
+
+// Get all spots owned(created) by the current user
+router.get(
+  '/spots',
+  [requireAuth, restoreUser],
+  async (req, res) => {
+    const { user } = req;
+
+    const userSpots = await Spot.findAll({
+      attributes: [
+        'id',
+        'ownerId',
+        'address',
+        'city',
+        'state',
+        'country',
+        'lat',
+        'lng',
+        'name',
+        'description',
+        'price',
+        'createdAt',
+        'updatedAt',
+        'previewImage'
+      ],
+      where: {ownerId: user.id}
+    })
+
+    res.json({
+      Spots: userSpots
+    })
   }
 );
 

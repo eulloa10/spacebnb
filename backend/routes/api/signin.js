@@ -44,7 +44,7 @@ router.post(
     })
 
     if (user) {
-      const token = setTokenCookie(res, currentUser)
+      const token = setTokenCookie(res, user)
       res.status(200)
       res.json({
         "id": user.id,
