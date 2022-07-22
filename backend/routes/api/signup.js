@@ -34,14 +34,14 @@ router.post(
     const { firstName, lastName, email, password } = req.body;
     const user = await User.signup({ firstName, lastName, email, password });
 
-    await setTokenCookie(res, user);
+    const token = await setTokenCookie(res, user);
 
     return res.json({
       "id": user.id,
       "firstName": user.firstName,
       "lastName": user.lastName,
       "email": user.email,
-      "token": ""
+      "token": token
     });
   }
 );
