@@ -33,7 +33,7 @@ router.get(
     });
     res.status(200);
     res.json({
-      "Spots":allSpots
+      "Spots": allSpots
     });
   }
 );
@@ -43,15 +43,27 @@ router.get(
   '/:id',
   async (req, res) => {
     const spotDetails = await Spot.findOne({
-      where: {id: req.params.id},
+      where: {
+        id: req.params.id
+      },
       include: [
         {
-          model: Image
+          model: Review
         },
         {
-          model: User
+          model: Image,
+          attributes: [
+            'id',
+            'imageableId',
+            'url'
+          ]
+        },
+        {
+          model: User,
+          as: 'Owner'
         }
-    ]
+      ]
+
     });
     res.status(200);
     res.json({
