@@ -38,19 +38,19 @@ router.post(
   validateSignin,
   async (req, res) => {
 
-    const currentUser = await User.login({
+    const user = await User.login({
       credential: req.body.email,
       password: req.body.password
     })
 
-    if (currentUser) {
+    if (user) {
       const token = setTokenCookie(res, currentUser)
       res.status(200)
       res.json({
-        "id": currentUser.id,
-        "firstName": currentUser.firstName,
-        "lastName": currentUser.lastName,
-        "email": currentUser.email,
+        "id": user.id,
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "email": user.email,
         "token": token
       })
     } else {
