@@ -61,7 +61,13 @@ app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
   if (err instanceof ValidationError) {
     err.errors = err.errors.map((e) => e.message);
-    err.title = 'Validation error';
+    // err.title = 'Validation error';
+    _res.status(403)
+    _res.json({
+      message: "User already exists",
+      statusCode: _res.statusCode,
+      errors: err.errors
+    })
   }
   next(err);
 });
@@ -70,12 +76,17 @@ app.use((err, _req, _res, next) => {
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   console.error(err);
-  res.json({
-    title: err.title || 'Server Error',
+   res.json({
     message: err.message,
-    errors: err.errors,
-    stack: isProduction ? null : err.stack
+    statusCode: err.status,
+    stack: isProduction ? null : err.stack,
   });
+  // res.json({
+  //   title: err.title || 'Server Error',
+  //   message: err.message,
+  //   errors: err.errors,
+  //   stack: isProduction ? null : err.stack
+  // });
 });
 
 module.exports = app;
