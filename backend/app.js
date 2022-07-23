@@ -64,7 +64,7 @@ app.use((err, _req, _res, next) => {
     // err.title = 'Validation error';
     _res.status(403)
     _res.json({
-      message: "User already exists",
+      message: "Validation Error",
       statusCode: _res.statusCode,
       errors: err.errors
     })

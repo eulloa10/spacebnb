@@ -1,14 +1,83 @@
 const express = require('express');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Image, Spot, Review } = require('../../db/models');
+const {
+  setTokenCookie,
+  requireAuth
+} = require('../../utils/auth');
+const {
+  User,
+  Image,
+  Spot,
+  Review
+} = require('../../db/models');
 
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
-const { Sequelize } = require('sequelize');
+const {
+  check
+} = require('express-validator');
+const {
+  handleValidationErrors
+} = require('../../utils/validation');
+const {
+  Sequelize
+} = require('sequelize');
 
 
 const router = express.Router();
+
+const validateSpotCreation = [
+  check('address')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Street address is required'),
+  check('city')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('City is required'),
+  check('state')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('State is required'),
+  check('country')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Country is required'),
+  check('lat')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Latitude is not valid'),
+  check('lng')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Longitude is not valid'),
+  check('name')
+  .exists({
+    checkFalsy: true
+  })
+  .custom((value, { req }) => value.length < 50)
+  .withMessage('Name must be less than 50 characters'),
+  check('description')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Description is required'),
+  check('price')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Price per day is required'),
+  check('previewImage')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Preview image url is required'),
+  handleValidationErrors
+];
 
 // Return all spots
 router.get(
@@ -47,8 +116,7 @@ router.get(
     const spotId = Number(req.params.id)
 
     const spotDetails = await Spot.findByPk(spotId, {
-      include: [
-        {
+      include: [{
           model: Image,
           attributes: [
             'id',
@@ -101,5 +169,44 @@ router.get(
     res.json(spotDetails);
   }
 );
+
+// Create a new spot
+router.post(
+  '/',
+  [requireAuth, validateSpotCreation],
+  async (req, res) => {
+
+    const {
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+      previewImage
+    } = req.body;
+
+    const spot = await Spot.create({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+      previewImage
+    });
+
+    res.json(spot)
+
+
+  }
+);
+
 
 module.exports = router;

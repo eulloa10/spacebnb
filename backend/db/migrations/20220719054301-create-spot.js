@@ -9,8 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ownerId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       address: {
         type: Sequelize.STRING,
@@ -25,8 +24,7 @@ module.exports = {
         allowNull: false
       },
       zipcode: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       country: {
         type: Sequelize.STRING,
@@ -41,7 +39,7 @@ module.exports = {
         allowNull: false
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       description: {
