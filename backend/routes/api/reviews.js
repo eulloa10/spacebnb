@@ -91,13 +91,18 @@ router.delete(
       throw err;
     }
 
-    const updatedReview = await review.update({
-      review: req.body.review,
-      stars: Number(req.body.stars)
-    })
+    await Review.destroy({
+      where: {
+        id: reviewId
+      }
+    });
+
 
     res.status(200);
-    res.json(updatedReview);
+    res.json({
+      "message": "Successfully deleted",
+      "statusCode": res.statusCode
+    });
   }
 );
 
