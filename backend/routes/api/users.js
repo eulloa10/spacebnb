@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth, restoreUser } = require('../../utils/auth');
-const { Spot } = require('../../db/models')
+const { Spot, Review, Image, User } = require('../../db/models')
 
 const router = express.Router();
 
@@ -52,6 +52,34 @@ router.get(
 
     res.json({
       Spots: userSpots
+    })
+  }
+);
+
+// Get all reviews written by the current user
+router.get(
+  '/reviews',
+  [requireAuth, restoreUser],
+  async (req, res) => {
+    const { user } = req;
+
+    const reviews = await Review.findAll({
+      where: {reviewableId: user.id},
+      include: [
+        {
+          model: User
+        },
+        {
+          model: Spot
+        },
+        {
+          model: Image
+        }
+      ]
+    })
+
+    res.json({
+      Reviews: reviews
     })
   }
 );
