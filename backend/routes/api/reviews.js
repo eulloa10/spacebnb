@@ -69,4 +69,36 @@ router.put(
   }
 );
 
+// Delete a review
+router.delete(
+  '/:reviewId',
+  requireAuth,
+  async (req, res) => {
+
+    const { user } = req;
+    const reviewId = Number(req.params.reviewId);
+
+    const review = await Review.findOne({
+      where: {
+        userId : user.id,
+        id: reviewId
+      }
+    })
+
+    if (!review) {
+      let err = new Error("Review couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    const updatedReview = await review.update({
+      review: req.body.review,
+      stars: Number(req.body.stars)
+    })
+
+    res.status(200);
+    res.json(updatedReview);
+  }
+);
+
 module.exports = router;
