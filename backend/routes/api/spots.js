@@ -210,5 +210,46 @@ router.post(
   }
 );
 
+// Edit a spot
+router.put(
+  '/:spotId',
+  [requireAuth],
+  async (req, res) => {
+    // console.log(req.user.id)
+    const {
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price
+    } = req.body;
+
+    const spotId = Number(req.params.spotId);
+
+    const spot = await Spot.findByPk(spotId);
+
+    const updatedSpot = await spot.update({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price
+    })
+
+    res.status(200);
+    res.json(updatedSpot);
+
+
+  }
+);
+
 
 module.exports = router;
