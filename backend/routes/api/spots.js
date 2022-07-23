@@ -175,7 +175,7 @@ router.post(
   '/',
   [requireAuth, validateSpotCreation],
   async (req, res) => {
-
+    // console.log(req.user.id)
     const {
       address,
       city,
@@ -190,6 +190,7 @@ router.post(
     } = req.body;
 
     const spot = await Spot.create({
+      ownerId: req.user.id,
       address,
       city,
       state,
@@ -202,7 +203,8 @@ router.post(
       previewImage
     });
 
-    res.json(spot)
+    res.status(200);
+    res.json(spot);
 
 
   }
