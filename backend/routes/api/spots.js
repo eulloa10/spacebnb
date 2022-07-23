@@ -286,7 +286,7 @@ router.put(
       }
     });
 
-    if (!spot || spot.id !== req.user.id) {
+    if (!spot || (spot.id !== req.user.id)) {
       let err = new Error("Spot couldn't be found");
       err.status = 404;
       throw err;
@@ -319,7 +319,7 @@ router.delete(
 
     const spot = await Spot.findByPk(spotId);
 
-    if (!spot) {
+    if (!spot || (spot.id !== req.user.id)) {
       let err = new Error("Spot couldn't be found");
       err.status = 404;
       throw err;
