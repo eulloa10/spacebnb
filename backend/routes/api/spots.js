@@ -406,11 +406,7 @@ router.post(
 
     const spotId = Number(req.params.spotId)
 
-    console.log("SPOTID", spotId)
-
     const spot = await Spot.findByPk(spotId);
-
-    console.log("SPOTTTT", spot);
 
     if (!spot) {
       let err = new Error("Spot couldn't be found");
@@ -420,7 +416,8 @@ router.post(
 
     const existingReview = await Review.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        spotId: spot.id
       }
     });
 
