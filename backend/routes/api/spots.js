@@ -309,5 +309,36 @@ router.put(
   }
 );
 
+// Delete a spot
+router.delete(
+  '/:spotId',
+  [requireAuth],
+  async (req, res) => {
+
+    const spotId = Number(req.params.spotId);
+
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+      let err = new Error("Spot couldn't be found");
+      err.status = 404;
+      throw err;
+    };
+
+    await Spot.destroy({
+      where: {
+        id: spotId
+      }
+    });
+
+
+    res.status(200);
+    res.json({
+      "message": "Successfully deleted",
+      "statusCode": res.statusCode
+    });
+  }
+);
+
 
 module.exports = router;
