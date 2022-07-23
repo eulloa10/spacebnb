@@ -64,16 +64,31 @@ router.get(
     const { user } = req;
 
     const reviews = await Review.findAll({
-      where: {reviewableId: user.id},
+      where: {userId: user.id},
       include: [
         {
           model: User
         },
         {
-          model: Spot
+          model: Spot,
+          attributes: {
+            exclude: [
+              'description',
+              'previewImage',
+              'createdAt',
+              'updatedAt'
+            ]
+          }
         },
         {
-          model: Image
+          model: Image,
+          attributes: {
+            exclude: [
+               'imageableType',
+               'createdAt',
+               'updatedAt'
+            ]
+          }
         }
       ]
     })

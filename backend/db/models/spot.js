@@ -13,11 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Spot.hasMany(
         models.Review,
         {
-          foreignKey: 'reviewableId',
-          constraints: false,
-          scope: {
-            reviewableType: 'spot'
-          }
+          foreignKey: 'spotId',
         }
       )
 

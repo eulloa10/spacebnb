@@ -129,6 +129,22 @@ const validateSpotEdit = [
   handleValidationErrors
 ];
 
+const validateReviewCreation = [
+  check('review')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  check('stars')
+  .exists({
+    checkFalsy: true
+  })
+  .custom((value, { req }) => Number.isInteger(value) && value > 0 && value < 6)
+  .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
+];
+
+
 // Return all spots
 router.get(
   '/',
@@ -190,7 +206,7 @@ router.get(
 
     const reviews = await Review.findAll({
       where: {
-        reviewableId: spotId
+        spotId: spotId
       },
       attributes: [
         [Sequelize.fn('COUNT', Sequelize.col('review')), 'numReviews']
@@ -202,7 +218,7 @@ router.get(
 
     const ratings = await Review.findAll({
       where: {
-        reviewableId: spotId
+        spotId: spotId
       },
       attributes: [
         [Sequelize.fn('SUM', Sequelize.col('stars')), 'sumOfStars']
@@ -337,6 +353,97 @@ router.delete(
       "message": "Successfully deleted",
       "statusCode": res.statusCode
     });
+  }
+);
+
+// Get all Reviews by a Spot's id
+router.get(
+  '/:spotId/reviews',
+  async (req, res) => {
+
+    const spotId = Number(req.params.spotId)
+
+    const spotDetails = await Spot.findByPk(spotId);
+
+    if (!spotDetails) {
+      let err = new Error("Spot couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    const reviews = await Review.findAll({
+      where: {
+        spotId: spotId
+      },
+      include: [
+        {
+          model: User
+        },
+        {
+          model: Image,
+          attributes: {
+            exclude: [
+              'imageableType',
+              'createdAt',
+              'updatedAt'
+            ]
+          }
+        }
+      ]
+    })
+    res.status(200);
+    res.json({
+      Reviews: reviews
+    });
+  }
+);
+
+// Create a Review for a Spot based on the Spot's id
+router.post(
+  '/:spotId/reviews',
+  [requireAuth, validateReviewCreation],
+  async (req, res) => {
+
+    const spotId = Number(req.params.spotId)
+
+    console.log("SPOTID", spotId)
+
+    const spot = await Spot.findByPk(spotId);
+
+    console.log("SPOTTTT", spot);
+
+    if (!spot) {
+      let err = new Error("Spot couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    const existingReview = await Review.findOne({
+      where: {
+        userId: req.user.id
+      }
+    });
+
+    if (existingReview) {
+      let err = new Error("User already has a review for this spot");
+      err.status = 403;
+      throw err;
+    }
+
+    const {
+      review,
+      stars
+    } = req.body;
+
+    const newReview = await Review.create({
+      userId: req.user.id,
+      spotId: spotId,
+      review,
+      stars
+    })
+
+    res.status(200);
+    res.json(newReview);
   }
 );
 

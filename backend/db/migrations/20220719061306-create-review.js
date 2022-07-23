@@ -8,13 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      reviewableId: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      reviewableType: {
-        type: Sequelize.STRING,
-        allowNull: false
+      spotId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       review: {
         type: Sequelize.TEXT,
