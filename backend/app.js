@@ -59,7 +59,7 @@ app.use((_req, _res, next) => {
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
-  console.log("ERRRRRR", err)
+  // console.log("ERRRRRR", err)
   if (err instanceof ValidationError) {
     err.errors = err.errors.map((e) => e.message);
     // err.title = 'Validation error';
@@ -69,7 +69,9 @@ app.use((err, _req, _res, next) => {
       _res.json({
         message: "User already exists",
         statusCode: _res.statusCode,
-        errors: err.errors
+        errors: {
+          email: "User with that email already exists"
+        }
       })
     }
     _res.status(400)
