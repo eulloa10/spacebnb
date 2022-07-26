@@ -270,7 +270,7 @@ router.post(
       previewImage
     });
 
-    res.status(200);
+    res.status(201);
     res.json(spot);
 
 
