@@ -87,6 +87,17 @@ app.use((err, _req, _res, next) => {
       errors: err.errors,
   })
 }
+
+if (err.message === 'startDate after endDate') {
+  _res.status(400)
+  _res.json({
+    message: 'Validation Error',
+    statusCode: _res.statusCode,
+    errors: err.errors,
+})
+}
+
+
   next(err);
 });
 
