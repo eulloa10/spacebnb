@@ -79,6 +79,14 @@ app.use((err, _req, _res, next) => {
       errors: err.errors,
     })
   }
+  if (err.message === 'Sorry, this spot is already booked for the specified dates') {
+    _res.status(403)
+    _res.json({
+      message: err.message,
+      statusCode: _res.statusCode,
+      errors: err.errors,
+  })
+}
   next(err);
 });
 

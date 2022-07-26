@@ -19,7 +19,7 @@ const {
   handleValidationErrors
 } = require('../../utils/validation');
 const {
-  Sequelize
+  Sequelize, Op
 } = require('sequelize');
 const user = require('../../db/models/user');
 
@@ -145,7 +145,6 @@ const validateReviewCreation = [
   .withMessage('Stars must be an integer from 1 to 5'),
   handleValidationErrors
 ];
-
 
 // Return all spots
 router.get(
@@ -496,5 +495,53 @@ router.post(
   }
 );
 
+// Create a booking from a spot based on the Spot's id
+router.post(
+  '/:spotId/bookings',
+  [requireAuth],
+  async (req, res, next) => {
+
+    const spotId = Number(req.params.spotId);
+    const bookingStart = new Date(req.body.startDate);
+    const bookingEnd = new Date(req.body.endDate);
+
+
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot || spot.ownerId === req.user.id) {
+      let err = new Error("Spot couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    const overlappingDates = await Booking.findOne({
+      where: {
+        spotId: spotId,
+        startDate: {[Op.between] : [bookingStart , bookingEnd ]}
+      }
+    })
+
+    if (overlappingDates) {
+      let err = new Error('Sorry, this spot is already booked for the specified dates');
+      err.statusCode = 403;
+      err.errors = {
+        startDate: "Start date conflicts with an existing booking",
+        endDate: "End date conflicts with an existing booking"
+      }
+      next(err);
+    } else {
+      const newBooking = await Booking.create({
+        userId: req.user.id,
+        spotId: spotId,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate
+      })
+
+      res.status(200);
+      res.json(newBooking)
+    }
+
+  }
+);
 
 module.exports = router;
