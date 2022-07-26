@@ -230,6 +230,10 @@ router.get(
 
     const avgStarRating = (ratingSum / reviewCount).toFixed(1)
 
+    if (reviewCount === 0) {
+      avgStarRating = 0;
+    }
+
     spotDetails.dataValues['avgStarRating'] = avgStarRating;
 
     res.status(200);
