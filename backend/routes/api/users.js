@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth, restoreUser } = require('../../utils/auth');
-const { Spot, Review, Image, User } = require('../../db/models')
+const { Spot, Review, Image, User, Booking } = require('../../db/models')
 
 const router = express.Router();
 
@@ -95,6 +95,33 @@ router.get(
 
     res.json({
       Reviews: reviews
+    })
+  }
+);
+
+// Get all bookings that the current user has made
+router.get(
+  '/bookings',
+  [requireAuth, restoreUser],
+  async (req, res) => {
+    const { user } = req;
+
+    const bookings = await Booking.findAll({
+      where: {userId: user.id},
+      include: {
+        model: Spot,
+        attributes: {
+          exclude: [
+            'description',
+            'createdAt',
+            'updatedAt'
+          ]
+        }
+      }
+    })
+
+    res.json({
+      Bookings: bookings
     })
   }
 );

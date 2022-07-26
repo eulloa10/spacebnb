@@ -17,6 +17,13 @@ module.exports = (sequelize, DataTypes) => {
           onDelete: 'cascade'
         }
       )
+
+      Booking.belongsTo(
+        models.Spot,
+        {
+          foreignKey: 'spotId'
+        }
+      )
     }
   }
   Booking.init({

@@ -8,7 +8,8 @@ const {
   User,
   Image,
   Spot,
-  Review
+  Review,
+  Booking
 } = require('../../db/models');
 
 const {
@@ -20,6 +21,7 @@ const {
 const {
   Sequelize
 } = require('sequelize');
+const user = require('../../db/models/user');
 
 
 const router = express.Router();
@@ -397,6 +399,56 @@ router.get(
     });
   }
 );
+
+// Get all Bookings by a Spot's id
+router.get(
+  '/:spotId/bookings',
+  requireAuth,
+  async (req, res) => {
+
+    const spotId = Number(req.params.spotId)
+
+
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+      let err = new Error("Spot couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    res.status(200);
+
+    if (spot.ownerId === req.user.id) {
+      const bookings = await Booking.findAll({
+        where: {
+          spotId: spotId
+        },
+        include: {
+          model: User
+        }
+      })
+      res.json({
+        "Bookings": bookings
+      })
+    } else {
+      const limitedBookingInfo = await Booking.findAll({
+        where: {
+          spotId: spotId
+        },
+        attributes: [
+            'spotId',
+            'startDate',
+            'endDate'
+        ]
+      })
+      res.json({
+        "Bookings": limitedBookingInfo
+      })
+    }
+  }
+);
+
 
 // Create a Review for a Spot based on the Spot's id
 router.post(
