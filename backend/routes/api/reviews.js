@@ -106,4 +106,55 @@ router.delete(
   }
 );
 
+// Add an image to a review based on the review id
+router.post(
+  '/:reviewId/images',
+  requireAuth,
+  async (req, res) => {
+
+    const reviewId = Number(req.params.reviewId)
+    const userId = req.user.id
+
+    const review = await Review.findByPk(reviewId, {
+      where: {
+        userId: userId
+      }
+    });
+
+    if (!review) {
+      let err = new Error("Review couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    const imgCount = await Image.findAll({
+      where: {
+        imageableId: reviewId,
+        imageableType: 'review'
+      }
+    })
+
+    if (imgCount.length < 10) {
+      const newImage = await Image.create({
+        imageableId: reviewId,
+        imageableType: 'review',
+        url: req.body.url,
+      })
+
+      res.status(200);
+      res.json({
+        id: newImage.id,
+        imageableId: newImage.imageableId,
+        url: newImage.url
+      });
+
+    } else {
+      let err = new Error("Maximum number of images for this resource was reached");
+      err.status = 403;
+      throw err
+    }
+
+  }
+);
+
 module.exports = router;

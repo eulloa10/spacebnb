@@ -544,4 +544,40 @@ router.post(
   }
 );
 
+// Add an image for a Spot based on the Spot's id
+router.post(
+  '/:spotId/images',
+  requireAuth,
+  async (req, res) => {
+
+    const spotId = Number(req.params.spotId)
+    const userId = req.user.id
+
+    const spot = await Spot.findByPk(spotId, {
+      where: {
+        ownerId: userId
+      }
+    });
+
+    if (!spot) {
+      let err = new Error("Spot couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
+    const newImage = await Image.create({
+      imageableId: spotId,
+      imageableType: 'spot',
+      url: req.body.url,
+    })
+
+    res.status(200);
+    res.json({
+      id: newImage.id,
+      imageableId: newImage.imageableId,
+      url: newImage.url
+    });
+  }
+);
+
 module.exports = router;
