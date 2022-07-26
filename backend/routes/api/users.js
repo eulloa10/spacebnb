@@ -17,7 +17,7 @@ router.get(
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        token: req.cookies.token
+        // token: req.cookies.token
       });
     } else return res.json({});
   }
