@@ -145,8 +145,8 @@ router.delete(
         "statusCode": res.statusCode
       })
     } else {
-      let err = new Error("Booking couldn't be found");
-      err.statusCode = 404;
+      let err = new Error("Forbidden");
+      err.status = 403;
       throw err
     }
   }
