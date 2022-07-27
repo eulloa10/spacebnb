@@ -146,50 +146,50 @@ const validateReviewCreation = [
   handleValidationErrors
 ];
 
-const validateQueryParams = [
-  query('page')
-  .exists({
-    checkFalsy: true
-  })
-  .withMessage('Review text is required'),
-  check('size')
-  .exists({
-    checkFalsy: true
-  })
-  .custom((value, { req }) => Number.isInteger(value) && value > 0 && value < 6)
-  .withMessage('Stars must be an integer from 1 to 5'),
-  query('maxLat')
-  .exists({
-    checkFalsy: true
-  })
-  .withMessage('Review text is required'),
-  query('minLat')
-  .exists({
-    checkFalsy: true
-  })
-  .withMessage('Review text is required'),
-  query('minLng')
-  .exists({
-    checkFalsy: true
-  })
-  .withMessage('Review text is required'),
-  query('maxLng')
-  .exists({
-    checkFalsy: true
-  })
-  .withMessage('Review text is required'),
-  query('minPrice')
-  .exists({
-    checkFalsy: true
-  })
-  .withMessage('Review text is required'),
-  query('maxPrice')
-  .exists({
-    checkFalsy: true
-  })
-  .withMessage('Review text is required'),
-  handleValidationErrors
-];
+// const validateQueryParams = [
+//   query('page')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .withMessage('Review text is required'),
+//   check('size')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .custom((value, { req }) => Number.isInteger(value) && value > 0 && value < 6)
+//   .withMessage('Stars must be an integer from 1 to 5'),
+//   query('maxLat')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .withMessage('Review text is required'),
+//   query('minLat')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .withMessage('Review text is required'),
+//   query('minLng')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .withMessage('Review text is required'),
+//   query('maxLng')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .withMessage('Review text is required'),
+//   query('minPrice')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .withMessage('Review text is required'),
+//   query('maxPrice')
+//   .exists({
+//     checkFalsy: true
+//   })
+//   .withMessage('Review text is required'),
+//   handleValidationErrors
+// ];
 
 // Return all spots
 router.get(
