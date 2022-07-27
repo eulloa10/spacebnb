@@ -183,6 +183,9 @@ router.get(
     const spotId = Number(req.params.id)
 
     const spotDetails = await Spot.findByPk(spotId, {
+      attributes: {
+        exclude: ['previewImage']
+      },
       include: [{
           model: Image,
           attributes: [
