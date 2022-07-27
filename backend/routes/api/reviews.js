@@ -91,6 +91,12 @@ router.delete(
       throw err;
     }
 
+    if (review.userId !== user.id) {
+      let err = new Error('Forbidden');
+      err.status = 404;
+      throw err;
+    }
+
     await Review.destroy({
       where: {
         id: reviewId
