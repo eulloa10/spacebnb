@@ -111,6 +111,19 @@ router.delete(
       throw err
     }
 
+    //Check if booking exists
+    const bookingExists = await Booking.findOne({
+      where: {
+        id: bookingId
+      }
+    });
+
+    if (!bookingExists) {
+      let err = new Error("Booking couldn't be found");
+      err.status = 404;
+      throw err;
+    }
+
     // Check to make sure booking belongs to current user
     const bookingByUser = await Booking.findOne({
       where: {
