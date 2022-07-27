@@ -195,50 +195,50 @@ const validateQueryParams = [
 router.get(
   '/',
   async (req, res) => {
-    let queryErrors = {};
+    // let queryErrors = {};
 
-    let page = Number(req.query.page);
-    let size = Number(req.query.size);
-    let minLat;
-    let maxLat;
-    let minLng;
-    let maxLng;
-    let minPrice;
-    let maxPrice;
+    // let page = Number(req.query.page);
+    // let size = Number(req.query.size);
+    // let minLat;
+    // let maxLat;
+    // let minLng;
+    // let maxLng;
+    // let minPrice;
+    // let maxPrice;
 
-    if (page) {
-      if (page < 0 || page > 10) {
-        queryErrors['page'] = "Page must be greater than or equal to 0";
-      }
-    } else {
-      page = 0;
-    }
+    // if (page) {
+    //   if (page < 0 || page > 10) {
+    //     queryErrors['page'] = "Page must be greater than or equal to 0";
+    //   }
+    // } else {
+    //   page = 0;
+    // }
 
-    if (size) {
-      if (size < 0 || size > 20) {
-        queryErrors['size'] = "Size must be greater than or equal to 0";
-      }
-    } else {
-      size = 20;
-    }
+    // if (size) {
+    //   if (size < 0 || size > 20) {
+    //     queryErrors['size'] = "Size must be greater than or equal to 0";
+    //   }
+    // } else {
+    //   size = 20;
+    // }
 
-    let resultLimit = size;
-    let resultOffset = size * (page - 1)
+    // let resultLimit = size;
+    // let resultOffset = size * (page - 1)
 
-    // filters
-    const where = {}
+    // // filters
+    // const where = {}
 
-    if (minLat) {
-      where.minLat = minLat
-    }
+    // if (minLat) {
+    //   where.minLat = minLat
+    // }
 
-    if (maxLat) {
+    // if (maxLat) {
+    //   where.maxLat = maxLat
+    // }
 
-    }
+    // if (minLat && maxLat) {
 
-    if (minLat && maxLat) {
-
-    }
+    // }
 
     const allSpots = await Spot.findAll({
       attributes: [
@@ -256,9 +256,7 @@ router.get(
         'createdAt',
         'updatedAt',
         'previewImage'
-      ],
-      limit: resultLimit,
-      offset: resultOffset
+      ]
     });
     res.status(200);
     res.json({
