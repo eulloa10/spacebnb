@@ -150,6 +150,7 @@ const validateReviewCreation = [
 router.get(
   '/',
   async (req, res) => {
+
     const allSpots = await Spot.findAll({
       attributes: [
         'id',
