@@ -68,8 +68,8 @@ router.delete(
         }
       });
     } else {
-      let err = new Error("Image couldn't be found");
-      err.status = 404;
+      let err = new Error("Forbidden");
+      err.status = 403;
       throw err;
     }
     res.status(200);
