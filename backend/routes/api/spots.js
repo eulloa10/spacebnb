@@ -146,10 +146,99 @@ const validateReviewCreation = [
   handleValidationErrors
 ];
 
+const validateQueryParams = [
+  query('page')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  check('size')
+  .exists({
+    checkFalsy: true
+  })
+  .custom((value, { req }) => Number.isInteger(value) && value > 0 && value < 6)
+  .withMessage('Stars must be an integer from 1 to 5'),
+  query('maxLat')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  query('minLat')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  query('minLng')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  query('maxLng')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  query('minPrice')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  query('maxPrice')
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage('Review text is required'),
+  handleValidationErrors
+];
+
 // Return all spots
 router.get(
   '/',
   async (req, res) => {
+    let queryErrors = {};
+
+    let page = Number(req.query.page);
+    let size = Number(req.query.size);
+    let minLat;
+    let maxLat;
+    let minLng;
+    let maxLng;
+    let minPrice;
+    let maxPrice;
+
+    if (page) {
+      if (page < 0 || page > 10) {
+        queryErrors['page'] = "Page must be greater than or equal to 0";
+      }
+    } else {
+      page = 0;
+    }
+
+    if (size) {
+      if (size < 0 || size > 20) {
+        queryErrors['size'] = "Size must be greater than or equal to 0";
+      }
+    } else {
+      size = 20;
+    }
+
+    let resultLimit = size;
+    let resultOffset = size * (page - 1)
+
+    // filters
+    const where = {}
+
+    if (minLat) {
+      where.minLat = minLat
+    }
+
+    if (maxLat) {
+
+    }
+
+    if (minLat && maxLat) {
+
+    }
 
     const allSpots = await Spot.findAll({
       attributes: [
@@ -167,7 +256,9 @@ router.get(
         'createdAt',
         'updatedAt',
         'previewImage'
-      ]
+      ],
+      limit: resultLimit,
+      offset: resultOffset
     });
     res.status(200);
     res.json({

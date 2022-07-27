@@ -146,7 +146,7 @@ router.delete(
     });
 
     if (bookingByUser || bookingByOwner) {
-      await Review.destroy({
+      await Booking.destroy({
         where: {
           id: bookingId
         }
