@@ -80,7 +80,6 @@ router.delete(
 
     const review = await Review.findOne({
       where: {
-        userId : user.id,
         id: reviewId
       }
     })
