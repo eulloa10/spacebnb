@@ -343,11 +343,18 @@ router.delete(
 
     const spot = await Spot.findByPk(spotId);
 
-    if (!spot || (spot.id !== req.user.id)) {
+    if (!spot) {
       let err = new Error("Spot couldn't be found");
       err.status = 404;
       throw err;
     };
+
+    if (spot.id !== req.user.id) {
+      let err = new Error("Forbidden");
+      err.status = 403;
+      throw err;
+    };
+
 
     await Spot.destroy({
       where: {
