@@ -214,9 +214,10 @@ const validateQueryParams = [
   })
   .withMessage('Maximum longitude is invalid'),
   query('minPrice')
-  .exists()
   .custom((minPrice) => {
-    if (Number(minPrice) >= 0) {
+    if (!minPrice) {
+      return true;
+    } else if (Number(minPrice) >= 0) {
       return true;
     } else {
       return false;
@@ -224,9 +225,10 @@ const validateQueryParams = [
   })
   .withMessage('Minimum price must be greater than or equal to 0'),
   query('maxPrice')
-  .exists()
   .custom((maxPrice) => {
-    if (Number(maxPrice) >= 0) {
+    if (!maxPrice) {
+      return true;
+    } else if (Number(maxPrice) >= 0) {
       return true;
     } else {
       return false;
@@ -271,7 +273,7 @@ router.get(
     // filters
     const where = {}
 
-    if (minLat & maxLat) {
+    if (minLat && maxLat) {
       where.lat = {
         [Op.between]: [Number(minLat), Number(maxLat)]
       }
@@ -289,7 +291,7 @@ router.get(
       }
     }
 
-    if (minLng & maxLng) {
+    if (minLng && maxLng) {
       where.lng = {
         [Op.between]: [Number(minLng), Number(maxLng)]
       }
@@ -307,8 +309,23 @@ router.get(
       }
     }
 
-    where.price = {
-      [Op.between]: [Number(minPrice), Number(maxPrice)]
+
+    if (minPrice && maxPrice) {
+      where.price = {
+        [Op.between]: [Number(minPrice), Number(maxPrice)]
+      }
+    } else if (minPrice) {
+      where.price = {
+        [Op.gte]: Number(minPrice)
+      }
+    } else if (maxPrice) {
+      where.price = {
+        [Op.lte]: Number(maxPrice)
+      }
+    } else {
+      where.price = {
+        [Op.ne]: null
+      }
     }
 
     const allSpots = await Spot.findAll({
