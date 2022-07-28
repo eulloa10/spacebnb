@@ -338,13 +338,11 @@ router.get(
       offset: resultOffset
     });
 
-
-    allSpots.dataValues.page = page
-    allSpots.dataValues.size = size
-
     res.status(200);
     res.json({
-      "Spots": allSpots
+      "Spots": allSpots,
+      "page": page,
+      "size": size
     });
   }
 );
