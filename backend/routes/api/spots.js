@@ -13,13 +13,15 @@ const {
 } = require('../../db/models');
 
 const {
-  check, query
+  check,
+  query
 } = require('express-validator');
 const {
   handleValidationErrors
 } = require('../../utils/validation');
 const {
-  Sequelize, Op
+  Sequelize,
+  Op
 } = require('sequelize');
 const user = require('../../db/models/user');
 
@@ -61,7 +63,9 @@ const validateSpotCreation = [
   .exists({
     checkFalsy: true
   })
-  .custom((value, { req }) => value.length < 50)
+  .custom((value, {
+    req
+  }) => value.length < 50)
   .withMessage('Name must be less than 50 characters'),
   check('description')
   .exists({
@@ -116,7 +120,9 @@ const validateSpotEdit = [
   .exists({
     checkFalsy: true
   })
-  .custom((value, { req }) => value.length < 50)
+  .custom((value, {
+    req
+  }) => value.length < 50)
   .withMessage('Name must be less than 50 characters'),
   check('description')
   .exists({
@@ -141,7 +147,9 @@ const validateReviewCreation = [
   .exists({
     checkFalsy: true
   })
-  .custom((value, { req }) => Number.isInteger(value) && value > 0 && value < 6)
+  .custom((value, {
+    req
+  }) => Number.isInteger(value) && value > 0 && value < 6)
   .withMessage('Stars must be an integer from 1 to 5'),
   handleValidationErrors
 ];
@@ -234,11 +242,16 @@ router.get(
   validateQueryParams,
   async (req, res) => {
 
-    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
-
-    console.log('PAGE', page)
-    console.log('SIZE', size)
-    console.log('MAXPRICE', maxPrice)
+    let {
+      page,
+      size,
+      minLat,
+      maxLat,
+      minLng,
+      maxLng,
+      minPrice,
+      maxPrice
+    } = req.query;
 
     if (page) {
       page = Number(page);
@@ -259,26 +272,44 @@ router.get(
     const where = {}
 
     if (minLat & maxLat) {
-      where.lat = {[Op.between]: [Number(minLat), Number(maxLat)]}
+      where.lat = {
+        [Op.between]: [Number(minLat), Number(maxLat)]
+      }
     } else if (minLat) {
-      where.lat = {[Op.gte]: Number(minLat)}
+      where.lat = {
+        [Op.gte]: Number(minLat)
+      }
     } else if (maxLat) {
-      where.lat = {[Op.lte]: Number(maxLat)}
+      where.lat = {
+        [Op.lte]: Number(maxLat)
+      }
     } else {
-      where.lat = {[Op.ne]: null}
+      where.lat = {
+        [Op.ne]: null
+      }
     }
 
     if (minLng & maxLng) {
-      where.lng = {[Op.between]: [Number(minLng), Number(maxLng)]}
+      where.lng = {
+        [Op.between]: [Number(minLng), Number(maxLng)]
+      }
     } else if (minLng) {
-      where.lng = {[Op.gte]: Number(minLng)}
+      where.lng = {
+        [Op.gte]: Number(minLng)
+      }
     } else if (maxLng) {
-      where.lng = {[Op.lte]: Number(maxLng)}
+      where.lng = {
+        [Op.lte]: Number(maxLng)
+      }
     } else {
-      where.lng = {[Op.ne]: null}
+      where.lng = {
+        [Op.ne]: null
+      }
     }
 
-    where.price = {[Op.between]: [Number(minPrice), Number(maxPrice)]}
+    where.price = {
+      [Op.between]: [Number(minPrice), Number(maxPrice)]
+    }
 
     const allSpots = await Spot.findAll({
       where,
@@ -508,8 +539,7 @@ router.get(
       where: {
         spotId: spotId
       },
-      include: [
-        {
+      include: [{
           model: User
         },
         {
@@ -568,9 +598,9 @@ router.get(
           spotId: spotId
         },
         attributes: [
-            'spotId',
-            'startDate',
-            'endDate'
+          'spotId',
+          'startDate',
+          'endDate'
         ]
       })
       res.json({
@@ -656,7 +686,9 @@ router.post(
     const overlappingDates = await Booking.findOne({
       where: {
         spotId: spotId,
-        startDate: {[Op.between] : [bookingStart , bookingEnd ]}
+        startDate: {
+          [Op.between]: [bookingStart, bookingEnd]
+        }
       }
     })
 
