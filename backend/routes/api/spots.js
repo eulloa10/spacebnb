@@ -270,6 +270,10 @@ router.get(
     let resultLimit = size;
     let resultOffset = size * (page - 1)
 
+    if (resultOffset < 0) {
+      resultOffset = 0
+    }
+
     // filters
     const where = {}
 
@@ -333,6 +337,10 @@ router.get(
       limit: resultLimit,
       offset: resultOffset
     });
+
+
+    allSpots.dataValues.page = page
+    allSpots.dataValues.size = size
 
     res.status(200);
     res.json({
