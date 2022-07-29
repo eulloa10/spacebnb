@@ -58,12 +58,9 @@ app.use((_req, _res, next) => {
 
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
-  // check if error is a Sequelize error:
-  // console.log("ERRRRRR", err)
   if (err instanceof ValidationError) {
     err.errors = err.errors.map((e) => e.message);
-    // err.title = 'Validation error';
-    // console.log("ERERRORSMESSAGE",err.errors)
+
     if (JSON.stringify(err.errors) === JSON.stringify(["email must be unique"])) {
       _res.status(403);
       _res.json({
@@ -112,12 +109,6 @@ app.use((err, _req, res, _next) => {
     statusCode: err.status,
     // stack: isProduction ? null : err.stack,
   });
-  // res.json({
-  //   title: err.title || 'Server Error',
-  //   message: err.message,
-  //   errors: err.errors,
-  //   stack: isProduction ? null : err.stack
-  // });
 });
 
 module.exports = app;

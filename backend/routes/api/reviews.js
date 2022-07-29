@@ -1,13 +1,10 @@
 const express = require('express');
 
 const {
-  setTokenCookie,
   requireAuth
 } = require('../../utils/auth');
 const {
-  User,
   Image,
-  Spot,
   Review
 } = require('../../db/models');
 
@@ -17,8 +14,6 @@ const {
 const {
   handleValidationErrors
 } = require('../../utils/validation');
-
-
 
 const router = express.Router();
 
@@ -158,7 +153,6 @@ router.post(
       err.status = 403;
       throw err
     }
-
   }
 );
 
