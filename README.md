@@ -1,4 +1,4 @@
-# `AirBnB`
+# AirBnB
 
 ## Database Schema Design
 
