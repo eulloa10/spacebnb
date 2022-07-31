@@ -145,6 +145,7 @@ router.post(
       res.json({
         id: newImage.id,
         imageableId: newImage.imageableId,
+        imageableType: newImage.imageableType,
         url: newImage.url
       });
 
