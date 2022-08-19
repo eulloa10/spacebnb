@@ -1,34 +1,39 @@
 const express = require('express');
 
 const {
-  setTokenCookie,
   requireAuth
 } = require('../../utils/auth');
+
 const {
-  User,
-  Image,
   Spot,
-  Review,
   Booking
 } = require('../../db/models');
 
 const {
   check
 } = require('express-validator');
+
 const {
   handleValidationErrors
 } = require('../../utils/validation');
+
 const {
-  Sequelize, Op
+  Op
 } = require('sequelize');
-const user = require('../../db/models/user');
 
 const router = express.Router();
+
+const validateBookingDates = [
+  check('endDate')
+  .custom((endDate, { req }) => req.body.startDate > endDate)
+  .withMessage('endDate cannot be on or before startDate'),
+  handleValidationErrors
+]
 
 // Update a booking
 router.put(
   '/:bookingId',
-  [requireAuth],
+  [requireAuth, validateBookingDates],
   async (req, res, next) => {
 
     const { user } = req;
@@ -54,15 +59,6 @@ router.put(
     if (booking.endDate < dateToday) {
       let err = new Error("Past bookings can't be modified");
       err.status = 403;
-      throw err;
-    }
-
-    if (bookingStart > bookingEnd) {
-      let err = new Error('startDate after endDate');
-      err.status = 400;
-      err.errors = {
-        endDate: "endDate cannot come before startDate",
-      }
       throw err;
     }
 
@@ -164,8 +160,5 @@ router.delete(
     }
   }
 );
-
-
-
 
 module.exports = router;
