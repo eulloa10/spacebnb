@@ -21,9 +21,9 @@ router.use('/signup', signupRouter);
 router.use('/spots', spotsRouter);
 router.use('/me', usersRouter);
 
-router.post('/test', function(req, res) {
-  res.json({ requestBody: req.body });
-});
+// router.post('/test', function(req, res) {
+//   res.json({ requestBody: req.body });
+// });
 
 
 module.exports = router;

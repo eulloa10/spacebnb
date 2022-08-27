@@ -1,54 +1,48 @@
-const userExists = {
-  user: {
-    id,
-    email,
-    createdAt,
-    updatedAt
-  }
-}
+import { csrfFetch } from './csrf';
 
 const initialState = {
   user: null
 }
 
-const SET_USER = 'signin/SET_USER';
-const REMOVE_USER = 'signin/REMOVE_USER';
+export const SET_USER = 'signin/setUser';
+export const REMOVE_USER = 'signin/removeUser';
 
-const setUser = user => {
+export const setUser = user => {
   return {
     type: SET_USER,
     user
   }
 }
 
-const removeUser = () => {
+export const removeUser = () => {
   return {
     type: REMOVE_USER,
   }
 }
 
-const logInUser = (user) => async (dispatch) => {
-  const { credential, password } = user;
-  const res = await fetch('/signin', {
+export const signinUser = (user) => async (dispatch) => {
+  const { email, password } = user;
+
+  const res = await csrfFetch('/signin', {
     method: 'POST',
     body: JSON.stringify({
-      credential,
+      email,
       password
-    })
+    }),
   })
 
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(setUser(data.user))
+    const userData = await res.json();
+    dispatch(setUser(userData));
     return res;
-  }
 }
+
 
 const signinReducer = (state=initialState, action) => {
   const newState = {...state};
   switch (action.type) {
     case SET_USER:
-      return
+      newState.user = action.user;
+      return newState;
     case REMOVE_USER:
       return initialState;
     default:
@@ -56,4 +50,4 @@ const signinReducer = (state=initialState, action) => {
   }
 }
 
-user ? signin : {user: null}
+export default signinReducer;
