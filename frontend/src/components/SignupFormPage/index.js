@@ -5,9 +5,9 @@ import * as sessionActions from "../../store/session";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session);
+  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
-  const [firstName, setfirstName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -38,7 +38,7 @@ function SignupFormPage() {
         <input
           type="text"
           value={firstName}
-          onChange={(e) => setfirstName(e.target.value)}
+          onChange={(e) => setFirstName(e.target.value)}
           required
         />
       </label>

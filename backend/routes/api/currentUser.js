@@ -7,7 +7,7 @@ const router = express.Router();
 // Get current user
 router.get(
   '/',
-  [requireAuth, restoreUser],
+  [restoreUser],
   (req, res) => {
     const { user } = req;
 

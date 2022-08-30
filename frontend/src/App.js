@@ -24,15 +24,4 @@ function App() {
   );
 }
 
-
-// function App() {
-//   return (
-//     <Switch>
-//       <Route path="/signin">
-//         <SigninFormPage />
-//       </Route>
-//     </Switch>
-//   );
-// }
-
 export default App;

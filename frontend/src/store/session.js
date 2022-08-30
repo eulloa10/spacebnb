@@ -1,12 +1,7 @@
 import { csrfFetch } from './csrf';
 
-const initialState = {
-  user: null
-}
-
-export const SET_USER = 'signin/setUser';
-export const REMOVE_USER = 'signin/removeUser';
-export const RESTORE_USER = 'signin/restoreUser'
+const SET_USER = 'session/setUser';
+const REMOVE_USER = 'session/removeUser';
 
 export const setUser = user => {
   return {
@@ -24,12 +19,11 @@ export const removeUser = () => {
 export const restoreUser = () => async dispatch => {
   const response = await csrfFetch('/session');
   const data = await response.json();
-  console.log("DATA", data)
-  dispatch(setUser(data));
+  dispatch(setUser(data.user));
   return response;
 };
 
-export const signinUser = (user) => async (dispatch) => {
+export const login = (user) => async (dispatch) => {
   const { email, password } = user;
 
   const res = await csrfFetch('/signin', {
@@ -40,8 +34,9 @@ export const signinUser = (user) => async (dispatch) => {
     }),
   })
 
-    const userData = await res.json();
-    dispatch(setUser(userData));
+    const data = await res.json();
+    console.log("DATA",data)
+    dispatch(setUser(data));
     return res;
 }
 
@@ -56,31 +51,45 @@ export const signup = (user) => async (dispatch) => {
       password,
     }),
   });
+
   const data = await response.json();
-  console.log('DATA', data)
-  dispatch(setUser(data));
+  dispatch(setUser(data.user));
+  return response;
+};
+
+export const logout = () => async (dispatch) => {
+  const response = await csrfFetch('/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeUser());
   return response;
 };
 
 // window.store.dispatch(window.sessionActions.signup({
-//   firstName: 'John',
-//   lastName: 'Jackson',
-//   email: 'new@user.io',
-//   password: 'password'
+//   firstName: 'Test',
+//   lastName: 'User',
+//   email: 'test@user.io',
+//   password: 'password12'
 // }));
 
+const initialState = {
+  user: null
+}
 
-const signinReducer = (state=initialState, action) => {
-  const newState = {...state};
+const sessionReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case SET_USER:
+      newState = Object.assign({}, state);
       newState.user = action.user;
       return newState;
     case REMOVE_USER:
-      return initialState;
+      newState = Object.assign({}, state);
+      newState.user = null;
+      return newState;
     default:
-      return newState
+      return state;
   }
 }
 
-export default signinReducer;
+export default sessionReducer;

@@ -2,27 +2,25 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import SigninForm from './SigninForm.css';
 
 function SigninFormPage() {
   const dispatch = useDispatch();
-  const loggedInUser = useSelector(state => state.signin.user);
-  console.log("LOGGEDINUSER", loggedInUser)
+  const sessionUser = useSelector(state => state.session.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (loggedInUser) return (
+  if (sessionUser) return (
     <Redirect to="/" />
   );
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.signinUser({ email, password }))
+    return dispatch(sessionActions.login({ email, password }))
       .catch(async (res) => {
-        const userData = await res.json();
-        if (userData && userData.errors) setErrors(userData.errors);
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
       });
   }
 
