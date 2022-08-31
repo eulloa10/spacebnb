@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import SigninFormPage from "./components/SigninFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
+import Navigation from "./components/Navigation";
+import AllSpots from "./components/LandingPage/AllSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,14 +15,22 @@ function App() {
   }, [dispatch]);
 
   return isLoaded && (
-    <Switch>
-      <Route path="/signin">
-        <SigninFormPage />
-      </Route>
-      <Route path="/signup">
-        <SignupFormPage />
-      </Route>
-    </Switch>
+    <>
+    <Navigation isLoaded={isLoaded} />
+    {isLoaded && (
+      <Switch>
+        <Route path="/">
+          <AllSpots />
+        </Route>
+        <Route path="/signin">
+          <SigninFormPage />
+        </Route>
+        <Route path="/signup">
+          <SignupFormPage />
+        </Route>
+      </Switch>
+    )}
+  </>
   );
 }
 
