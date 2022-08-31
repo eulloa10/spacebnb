@@ -1,0 +1,28 @@
+.spot {
+  background-color: white;
+  /* max-width: 30%;
+  max-height: 20%; */
+}
+
+body {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.spot-list {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 25% 25% 25% 25%;
+  column-gap: 5%;
+}
+
+.spot-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 5%;
+}
+
+.spot-description {
+  font-weight: bold;
+  font-family: sans-serif;
+}
