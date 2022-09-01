@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { fetchSpots } from '../../store/spots'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './UserSpots.css'
 
 function UserSpots() {
   const spots = useSelector(state => state.spots)
   const currentUserId = useSelector(state => state.session.user.id);
 
+  console.log("USERSPOTS", spots)
   const dispatch = useDispatch();
   const allSpotsList = [];
 
@@ -35,7 +36,7 @@ function UserSpots() {
       return (
         <>
           <div>
-          <Link key={index} to={`/spots/${spot.id}`}>
+          <Link key={index} to={`/me/spots/${spot.id}`}>
             <div className='spot' key={index}>
               <img className='spot-image' src={`${spot.previewImage}`} alt='Spot'/>
               <div className='spot-description'>
@@ -44,7 +45,7 @@ function UserSpots() {
               </div>
             </div>
           </Link>
-          <button>Edit</button>
+          <Link to={`/me/spots/${spot.id}/edit`}><button>Edit</button></Link>
           <button>Delete</button>
           </div>
         </>

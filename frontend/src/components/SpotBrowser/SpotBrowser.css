@@ -12,7 +12,8 @@ body {
 .spot-list {
   display: grid;
   grid-auto-flow: row;
-  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-columns: repeat(5, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-template-rows: repeat(2, 1fr);
   /* column-gap: 5%;
   row-gap: 10%; */

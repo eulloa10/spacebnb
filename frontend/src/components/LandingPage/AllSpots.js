@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Route, useParams } from 'react-router-dom';
 import { fetchSpots } from '../../store/spots';
-import allSpots from './AllSpots.css'
+import './AllSpots.css'
 
 
 const AllSpots = () => {
   const spots = useSelector(state => state.spots)
-  console.log("SPOTS", spots)
-  const [showForm, setShowForm] = useState(false);
   const dispatch = useDispatch();
   const allSpotsList = [];
 
@@ -20,9 +17,6 @@ const AllSpots = () => {
   useEffect(() => {
     dispatch(fetchSpots());
   }, [dispatch]);
-
-
-
 
   if (!spots) {
     return null;
