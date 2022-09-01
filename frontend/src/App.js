@@ -6,6 +6,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/LandingPage/AllSpots";
+import MySpots from "./components/MySpots/MySpots";
+import MyReviews from "./components/MyReviews/MyReviews"
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ function App() {
     <Navigation isLoaded={isLoaded} />
     {isLoaded && (
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <AllSpots />
         </Route>
         <Route path="/signin">
@@ -27,6 +29,12 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignupFormPage />
+        </Route>
+        <Route path="/me/spots">
+          <MySpots />
+        </Route>
+        <Route path="/me/reviews">
+          <MyReviews />
         </Route>
       </Switch>
     )}

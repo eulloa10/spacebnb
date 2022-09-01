@@ -1,9 +1,31 @@
-
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
 
 ul {
   list-style: none;
 }
 
 .main-header {
-  background-color: black;
+  background-color: white;
+}
+
+.home {
+
+}
+
+.auth-actions {
+}
+
+.main-header-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2%
+}
+
+.signup-button {
+  margin-left: 10px;
 }

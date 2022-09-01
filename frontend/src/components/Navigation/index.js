@@ -15,17 +15,21 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/signin">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <div className='auth-actions'>
+          <NavLink className='login-button' to="/signin">Log In</NavLink>
+          <NavLink className='signup-button' to="/signup">Sign Up</NavLink>
+        </div>
       </>
     );
   }
 
   return (
     <header className='main-header'>
-      <ul>
+      <ul className='main-header-options'>
         <li>
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink className='home' exact to="/">Spacebnb</NavLink>
+        </li>
+        <li className='session-links'>
           {isLoaded && sessionLinks}
         </li>
       </ul>
