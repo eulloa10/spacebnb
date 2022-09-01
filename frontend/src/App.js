@@ -5,9 +5,10 @@ import SigninFormPage from "./components/SigninFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import AllSpots from "./components/LandingPage/AllSpots";
-import MySpots from "./components/MySpots/MySpots";
 import MyReviews from "./components/MyReviews/MyReviews"
+import SpotBrowser from "./components/SpotBrowser/SpotBrowser";
+import SpotDetail from "./components/SpotDetail/SpotDetail";
+import UserSpots from "./components/UserSpots/UserSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +23,11 @@ function App() {
     {isLoaded && (
       <Switch>
         <Route exact path="/">
-          <AllSpots />
+          {/* <AllSpots /> */}
+          <SpotBrowser />
+        </Route>
+        <Route exact path="/spots/:spotId">
+          <SpotDetail />
         </Route>
         <Route path="/signin">
           <SigninFormPage />
@@ -31,7 +36,7 @@ function App() {
           <SignupFormPage />
         </Route>
         <Route path="/me/spots">
-          <MySpots />
+          <UserSpots />
         </Route>
         <Route path="/me/reviews">
           <MyReviews />
