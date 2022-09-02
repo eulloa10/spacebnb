@@ -520,7 +520,7 @@ router.delete(
       throw err;
     };
 
-    if (spot.id !== req.user.id) {
+    if (spot.ownerId !== req.user.id) {
       let err = new Error("Forbidden");
       err.status = 403;
       throw err;

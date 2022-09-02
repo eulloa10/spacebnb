@@ -10,6 +10,7 @@ import SpotBrowser from "./components/SpotBrowser/SpotBrowser";
 import SpotDetail from "./components/SpotDetail/SpotDetail";
 import UserSpots from "./components/UserSpots/UserSpots";
 import EditSpotForm from "./components/EditSpotForm/EditSpotForm";
+import CreateSpotForm from "./components/CreateSpotForm/CreateSpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
         <Route path="/signup">
           <SignupFormPage />
         </Route>
+        <Route exact path="/me/spots/new">
+          <CreateSpotForm />
+        </Route>
         <Route exact path="/me/spots">
           <UserSpots />
         </Route>
@@ -45,6 +49,7 @@ function App() {
         <Route exact path="/me/spots/:spotId/edit">
           <EditSpotForm />
         </Route>
+
         <Route path="/me/reviews">
           <MyReviews />
         </Route>

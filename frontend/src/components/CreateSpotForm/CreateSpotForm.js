@@ -1,35 +1,31 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
 
-function EditSpotForm() {
+function CreateSpotForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { spotId } = useParams();
-  console.log("FORMSPOTID", spotId)
-  const currentSpot = useSelector(state => state.spots[spotId])
-  console.log("FORM", currentSpot)
-  const [address, setAddress] = useState(currentSpot.address);
-  const [city, setCity] = useState(currentSpot.city);
-  const [state, setState] = useState(currentSpot.state);
-  const [country, setCountry] = useState(currentSpot.country);
-  const [lat, setLat] = useState(currentSpot.lat);
-  const [lng, setLng] = useState(currentSpot.lng);
-  const [name, setName] = useState(currentSpot.name);
-  const [description, setDescription] = useState(currentSpot.description);
-  const [price, setPrice] = useState(currentSpot.price);
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
 
   // if (sessionUser) return (
   //   <Redirect to="/" />
   // );
 
   const handleSubmit = (e) => {
-    console.log("entered")
     e.preventDefault();
-    const updatedSpot = {address, city, state, country, lat, lng, name, description, price};
-    console.log("UPDATED SPOT", updatedSpot)
-    dispatch(spotActions.updateSpot(updatedSpot, spotId))
+    const newSpot = {address, city, state, country, lat, lng, name, description, price, previewImage};
+    console.log("NEWSPOT", newSpot)
+    dispatch(spotActions.createNewSpot(newSpot))
     history.push(`/me/spots`)
     // setErrors([]);
     // return dispatch(sessionActions.login({ email, password }))
@@ -40,14 +36,10 @@ function EditSpotForm() {
   }
 
   return (
-
     <form onSubmit={handleSubmit}>
       <ul>
         {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
       </ul>
-      <div>
-        <img src={`${currentSpot.previewImage}`} alt="spot"/>
-      </div>
       <label>
         Address
         <input
@@ -129,9 +121,18 @@ function EditSpotForm() {
           required
         />
       </label>
+      <label>
+        Preview Image
+        <input
+          type="text"
+          value={previewImage}
+          onChange={(e) => setPreviewImage(e.target.value)}
+          required
+        />
+      </label>
       <button type="submit">Save</button>
     </form>
   );
 }
 
-export default EditSpotForm;
+export default CreateSpotForm;

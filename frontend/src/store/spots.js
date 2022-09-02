@@ -1,7 +1,10 @@
+import { csrfFetch } from './csrf'
+
 export const RECEIVE_SPOTS = 'spots/RECEIVE_SPOTS';
 export const ADD_SPOT = 'spots/ADD_SPOT';
 export const DELETE_SPOT = 'spots/DELETE_SPOT';
 export const EDIT_SPOT = 'spots/EDIT_SPOT'
+
 
 const receiveSpots = (spots) => {
   return {
@@ -24,15 +27,15 @@ const deleteSpot = (spotId) => {
   }
 }
 
-const editSpot = (spotId) => {
+const editSpot = (spot) => {
   return {
     type: EDIT_SPOT,
-    spotId
+    spot
   }
 }
 
 export const fetchSpots = () => async (dispatch) => {
-  const res = await fetch(`/spots`);
+  const res = await csrfFetch(`/spots`);
   const data = await res.json();
   console.log("DATA", data.Spots)
   res.data = data;
@@ -43,6 +46,40 @@ export const fetchSpots = () => async (dispatch) => {
     throw res;
   }
 };
+
+export const updateSpot = (spot, spotId) => async (dispatch) => {
+  console.log("Found Spot", spot, spotId)
+  const res = await csrfFetch(`/spots/${spotId}`, {
+    method: 'PUT',
+    body: JSON.stringify(spot)
+  })
+  console.log("RES", res)
+  if (res.ok) {
+		const updatedSpot = await res.json();
+		dispatch(editSpot(updatedSpot));
+	}
+}
+
+export const deleteSelectedSpot = (spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/spots/${spotId}`, {
+    method: 'DELETE',
+  })
+  console.log("RES", res)
+  if (res.ok) {
+		dispatch(deleteSpot(spotId));
+	}
+}
+
+export const createNewSpot = (spot) => async(dispatch) => {
+  const res = await csrfFetch('/spots', {
+    method: 'POST',
+    body: JSON.stringify(spot)
+  } )
+  if (res.ok) {
+		const newSpot = await res.json();
+		dispatch(addSpot(newSpot));
+	}
+}
 
 const initialState = {}
 
@@ -55,6 +92,14 @@ const spotsReducer = (state = initialState, action) => {
 				allSpots[spot.id] = spot;
 			});
 			return {...allSpots, ...newState};
+    case ADD_SPOT:
+      newState[action.spot.id] = action.spot
+      return newState;
+    case EDIT_SPOT:
+      return newState[action.spot.id] = action.spot;
+    case DELETE_SPOT:
+      delete newState[action.spotId];
+      return newState;
 		default:
 			return state;
 	}

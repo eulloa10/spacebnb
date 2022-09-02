@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import { fetchSpots } from '../../store/spots'
-import { Link, Redirect } from 'react-router-dom'
+import * as spotActions from '../../store/spots';
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import './UserSpots.css'
 
 function UserSpots() {
+  const history = useHistory();
   const spots = useSelector(state => state.spots)
   const currentUserId = useSelector(state => state.session.user.id);
+
 
   console.log("USERSPOTS", spots)
   const dispatch = useDispatch();
@@ -19,8 +21,23 @@ function UserSpots() {
   }
 
   useEffect(() => {
-    dispatch(fetchSpots());
+    dispatch(spotActions.fetchSpots());
   }, [dispatch]);
+
+  const deleteSpot = (spotId) => {
+    console.log(spotId)
+    dispatch(spotActions.deleteSelectedSpot(spotId))
+    history.push(`/me/spots`)
+
+
+      // setErrors([]);
+      // return dispatch(sessionActions.login({ email, password }))
+      //   .catch(async (res) => {
+      //     const data = await res.json();
+      //     if (data && data.errors) setErrors(data.errors);
+      //   });
+
+  }
 
   if (!spots) {
     return null;
@@ -28,8 +45,9 @@ function UserSpots() {
 
   return (
     <>
+    <div>My Spots</div>
     <div>
-      <button>Add a new spot</button>
+      <Link to="/me/spots/new"><button>Add a new spot</button></Link>
     </div>
     <div className='spot-list'>
       {allSpotsList.map((spot,index) => {
@@ -46,7 +64,7 @@ function UserSpots() {
             </div>
           </Link>
           <Link to={`/me/spots/${spot.id}/edit`}><button>Edit</button></Link>
-          <button>Delete</button>
+          <button onClick={() => deleteSpot(spot.id)}>Delete</button>
           </div>
         </>
       )
