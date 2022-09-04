@@ -12,7 +12,7 @@ function SignupFormPage() {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -23,17 +23,23 @@ function SignupFormPage() {
       return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
         .catch(async (res) => {
           const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+          console.log("SIGNUPDATA", data)
+          if (data && data.errors) setErrors({...data.errors});
         });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors({'passwordVerification' : 'Confirm Password field must be the same as the Password field'});
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+       {
+        Object.keys(errors).map(error => {
+          return (<ul>
+            {errors[error]}
+          </ul>)
+        }
+        )
+      }
       <label>
         First Name
         <input

@@ -1,0 +1,7 @@
+.all-current-spots {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(400px, 1fr));
+  margin-top: 5%;
+}

@@ -8,7 +8,7 @@ function SigninFormPage() {
   const sessionUser = useSelector(state => state.session.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   if (sessionUser) return (
     <Redirect to="/" />
@@ -20,14 +20,33 @@ function SigninFormPage() {
     return dispatch(sessionActions.login({ email, password }))
       .catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+
+        if (data.message === 'Invalid credentials') {
+          return setErrors({
+            "errors": data.message
+          })
+        }
+        if (data && data.errors) {
+          setErrors({...data.errors});
+        }
       });
+
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
+      {/* <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul> */}
+      <ul>
+      {
+        Object.keys(errors).map(error => {
+          return (<ul>
+            {errors[error]}
+          </ul>)
+        }
+        )
+      }
       </ul>
       <label>
         Email

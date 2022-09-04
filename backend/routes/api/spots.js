@@ -481,7 +481,7 @@ router.put(
       }
     });
 
-    if (!spot || (spot.id !== req.user.id)) {
+    if (!spot || (spot.ownerId !== req.user.id)) {
       let err = new Error("Spot couldn't be found");
       err.status = 404;
       throw err;

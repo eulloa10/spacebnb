@@ -34,10 +34,11 @@ export const login = (user) => async (dispatch) => {
     }),
   })
 
+  if (res.ok) {
     const data = await res.json();
-    console.log("DATA",data)
     dispatch(setUser(data));
-    return res;
+  }
+  return res;
 }
 
 export const signup = (user) => async (dispatch) => {
@@ -52,8 +53,10 @@ export const signup = (user) => async (dispatch) => {
     }),
   });
 
-  const data = await response.json();
-  dispatch(setUser(data.user));
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data.user));
+  }
   return response;
 };
 
@@ -77,13 +80,15 @@ const initialState = {
 }
 
 const sessionReducer = (state = initialState, action) => {
-  let newState;
+  let newState = {...initialState};
   switch (action.type) {
     case SET_USER:
+      newState = {...state}
       newState = Object.assign({}, state);
       newState.user = action.user;
       return newState;
     case REMOVE_USER:
+      newState = {...state}
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;

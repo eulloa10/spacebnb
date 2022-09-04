@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/eulloa10/airbnb/issues"
   },
-  "homepage": "https://github.com/eulloa10/airbnb#readme"
+  "homepage": "https://github.com/eulloa10/airbnb#readme",
+  "dependencies": {
+    "react-router-dom": "^6.3.0"
+  }
 }

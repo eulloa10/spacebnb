@@ -10,13 +10,8 @@ ul {
 
 .main-header {
   background-color: white;
-}
-
-.home {
-
-}
-
-.auth-actions {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .main-header-options {
@@ -26,6 +21,6 @@ ul {
   margin-top: 2%
 }
 
-.signup-button {
+/* .signup-button {
   margin-left: 10px;
-}
+} */

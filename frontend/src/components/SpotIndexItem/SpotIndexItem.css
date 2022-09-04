@@ -1,23 +1,12 @@
-.spot {
-  background-color: white;
-  /* max-width: 30%;
-  max-height: 20%; */
-}
-
-body {
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.spot-list {
+/* .spot {
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  /* column-gap: 5%;
-  row-gap: 10%; */
+  column-gap: 5%;
+  row-gap: 10%;
   margin-top: 5%;
-}
+} */
 
 .spot-image {
   width: 300px;
@@ -28,4 +17,8 @@ body {
 .spot-description {
   font-weight: bold;
   font-family: sans-serif;
+} */
+
+.spot {
+  border-radius: 5%;
 }

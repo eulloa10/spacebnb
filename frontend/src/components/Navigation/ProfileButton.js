@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
+
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  console.log("PROFBUT", user)
-
 
   const openMenu = () => {
     if (showMenu) return;
@@ -29,10 +29,12 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    // history.push('/')
   };
 
   return (
     <>
+    <div className="header">
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
@@ -50,6 +52,7 @@ function ProfileButton({ user }) {
           </li>
         </ul>
       )}
+      </div>
     </>
   );
 }

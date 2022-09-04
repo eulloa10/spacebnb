@@ -7,9 +7,7 @@ function EditSpotForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { spotId } = useParams();
-  console.log("FORMSPOTID", spotId)
   const currentSpot = useSelector(state => state.spots[spotId])
-  console.log("FORM", currentSpot)
   const [address, setAddress] = useState(currentSpot.address);
   const [city, setCity] = useState(currentSpot.city);
   const [state, setState] = useState(currentSpot.state);
@@ -19,31 +17,39 @@ function EditSpotForm() {
   const [name, setName] = useState(currentSpot.name);
   const [description, setDescription] = useState(currentSpot.description);
   const [price, setPrice] = useState(currentSpot.price);
+  const [errors, setErrors] = useState({})
 
   // if (sessionUser) return (
   //   <Redirect to="/" />
   // );
 
-  const handleSubmit = (e) => {
-    console.log("entered")
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
     const updatedSpot = {address, city, state, country, lat, lng, name, description, price};
-    console.log("UPDATED SPOT", updatedSpot)
-    dispatch(spotActions.updateSpot(updatedSpot, spotId))
-    history.push(`/me/spots`)
-    // setErrors([]);
-    // return dispatch(sessionActions.login({ email, password }))
-    //   .catch(async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) setErrors(data.errors);
-    //   });
+    // dispatch(spotActions.updateSpot(spotId, updatedSpot));
+    // history.push(`/me/spots`)
+    const res = await dispatch(spotActions.updateSpot(spotId, updatedSpot))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data.errors) setErrors({...data.errors});
+      });
+
+    if (res) history.push(`/me/spots`)
   }
 
   return (
 
     <form onSubmit={handleSubmit}>
       <ul>
-        {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
+      {
+        Object.keys(errors).map(error => {
+          return (<li>
+            {errors[error]}
+          </li>)
+        }
+        )
+      }
       </ul>
       <div>
         <img src={`${currentSpot.previewImage}`} alt="spot"/>

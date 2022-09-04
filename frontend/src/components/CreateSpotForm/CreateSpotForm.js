@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
 
+
 function CreateSpotForm() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -16,29 +17,38 @@ function CreateSpotForm() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [previewImage, setPreviewImage] = useState('');
+  const [errors, setErrors] = useState({});
 
-  // if (sessionUser) return (
-  //   <Redirect to="/" />
-  // );
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newSpot = {address, city, state, country, lat, lng, name, description, price, previewImage};
-    console.log("NEWSPOT", newSpot)
-    dispatch(spotActions.createNewSpot(newSpot))
-    history.push(`/me/spots`)
-    // setErrors([]);
-    // return dispatch(sessionActions.login({ email, password }))
-    //   .catch(async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) setErrors(data.errors);
-    //   });
+
+    let res = await dispatch(spotActions.createNewSpot(newSpot))
+    .catch(async (res) => {
+      const data = await res.json();
+
+      if (data.errors) setErrors({...data.errors})
+
+    });
+
+    if (res) {
+      history.push('/me/spots')
+    }
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <ul>
-        {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
+        {
+        Object.keys(errors).map(error => {
+          return (<li>
+            {errors[error]}
+          </li>)
+        }
+        )
+      }
       </ul>
       <label>
         Address
