@@ -20,7 +20,19 @@ module.exports = {
         spotId: 1,
         review: 'This place is okay',
         stars: 3
-      }
+      },
+      {
+        userId: 3,
+        spotId: 2,
+        review: 'This place is meh',
+        stars: 3
+      },
+      {
+        userId: 1,
+        spotId: 3,
+        review: 'This place was solid',
+        stars: 5
+      },
 
     ], {});
   },

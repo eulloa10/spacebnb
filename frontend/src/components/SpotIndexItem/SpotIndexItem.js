@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteSelectedSpot } from '../../store/spots'
+import { deleteSelectedSpot } from '../../store/spots';
 import './SpotIndexItem.css'
 
 
