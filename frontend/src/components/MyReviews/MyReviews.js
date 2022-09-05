@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as reviewActions from '../../store/reviews';
 import * as spotActions from '../../store/spots';
 import { Link } from 'react-router-dom';
-import SpotIndexItem from '../SpotIndexItem/SpotIndexItem'
-
-
 
 const MyReviews = () => {
   const dispatch = useDispatch();
@@ -17,10 +14,6 @@ const MyReviews = () => {
     dispatch(reviewActions.currentUserReviews());
     dispatch(spotActions.fetchSpots());
   }, [dispatch]);
-
-  // console.log("REVIEWSMINE", currentUserReviews)
-  // console.log("REVIEWSSPOTSMINE", spots)
-  // console.log("REVIEWDET", reviewDetails)
 
   if (!currentUserReviews) {
     return null;
