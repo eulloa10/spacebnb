@@ -54,8 +54,8 @@ export const currentUserReviews = () => async (dispatch) => {
   const res = await csrfFetch(`/me/reviews`);
   const data = await res.json();
 
-  // console.log("REVIEWDATA", data)
-  // console.log("RES", res)
+  console.log("REVIEWDATA", data)
+
   if (res.ok) {
     dispatch(getCurrentUserReviews(data));
   } else {
@@ -117,10 +117,9 @@ const reviewsReducer = (state = initialState, action) => {
 			newState[action.reviews.Reviews[0].spotId] = action.reviews.Reviews;
 			return newState;
     case LOAD_CURRENT_USER_REVIEWS:
-      newState = {...state};
+      newState = initialState;
       action.reviews.Reviews.map((review) => newState[review.id] = review)
-      // console.log("ACTIONREVIEWS", action.reviews)
-      // console.log("NS2", newState)
+      console.log("LOAD_CURRENT_USER_REVIEWS", newState)
       return newState;
     case EDIT_REVIEW:
       newState = {...state};
