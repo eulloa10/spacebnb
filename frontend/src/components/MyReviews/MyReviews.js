@@ -11,10 +11,6 @@ const MyReviews = () => {
   const spots = useSelector(state => state.spots)
   const reviewDetails = Object.values(currentUserReviews);
 
-  console.log("CURRENTUSERREVIEWS", currentUserReviews)
-  console.log("SPOTS", spots);
-  console.log("REVIEWDETAILS", reviewDetails);
-
   useEffect(() => {
     dispatch(myReviewActions.currentUserReviews());
     dispatch(spotActions.fetchSpots());
