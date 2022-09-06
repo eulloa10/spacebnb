@@ -30,7 +30,7 @@ const myReviewsReducer = (state = initialState, action) => {
   let newState = {...initialState}
 	switch (action.type) {
     case LOAD_CURRENT_USER_REVIEWS:
-      newState = {...state};
+      newState = {...initialState};
       action.reviews.Reviews.map((review) => newState[review.id] = review)
       console.log("LOAD_CURRENT_USER_REVIEWS", newState)
       return newState;
