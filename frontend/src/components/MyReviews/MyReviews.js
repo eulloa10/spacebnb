@@ -8,7 +8,10 @@ const MyReviews = () => {
   const dispatch = useDispatch();
   const currentUserReviews = useSelector(state => state.reviews)
   const spots = useSelector(state => state.spots)
-  const reviewDetails = Object.values(currentUserReviews)[0];
+  const reviewDetails = Object.values(currentUserReviews);
+
+  // console.log("CurrentUserRev", Object.values(currentUserReviews))
+  // console.log("REVIEWSSPOTSLOAD", spots)
 
   useEffect(() => {
     dispatch(reviewActions.currentUserReviews());
@@ -21,7 +24,7 @@ const MyReviews = () => {
 
   return (
     <ul>
-    {
+    { currentUserReviews && spots &&
       reviewDetails.map(userReview => {
         return (
         <Link to={`/spots/${userReview.spotId}`}>

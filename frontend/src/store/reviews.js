@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf'
 
 export const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
+export const LOAD_CURRENT_USER_REVIEWS = 'reviews/LOAD_CURRENT_USER_REVIEWS'
 export const ADD_REVIEW = 'reviews/ADD_REVIEW';
 export const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW';
 export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
@@ -8,6 +9,13 @@ export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
 const getReviews = (reviews) => {
   return {
     type: LOAD_REVIEWS,
+    reviews
+  }
+}
+
+const getCurrentUserReviews = (reviews) => {
+  return {
+    type: LOAD_CURRENT_USER_REVIEWS,
     reviews
   }
 }
@@ -36,7 +44,6 @@ const updateReview = (review) => {
 export const fetchReviews = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/spots/${spotId}/reviews`);
   const data = await res.json();
-  console.log("REVIEWDATAHERE", data)
   if (res.ok) {
     dispatch(getReviews(data));
   }
@@ -47,9 +54,10 @@ export const currentUserReviews = () => async (dispatch) => {
   const res = await csrfFetch(`/me/reviews`);
   const data = await res.json();
 
-  console.log("REVIEWDATA", data)
+  // console.log("REVIEWDATA", data)
+  // console.log("RES", res)
   if (res.ok) {
-    dispatch(getReviews(data));
+    dispatch(getCurrentUserReviews(data));
   } else {
     // if response status code is 400 or greater, throw the response as an error
     throw res;
@@ -108,6 +116,12 @@ const reviewsReducer = (state = initialState, action) => {
       newState = {...state};
 			newState[action.reviews.Reviews[0].spotId] = action.reviews.Reviews;
 			return newState;
+    case LOAD_CURRENT_USER_REVIEWS:
+      newState = {...state};
+      action.reviews.Reviews.map((review) => newState[review.id] = review)
+      // console.log("ACTIONREVIEWS", action.reviews)
+      // console.log("NS2", newState)
+      return newState;
     case EDIT_REVIEW:
       newState = {...state};
       newState[action.review.id] = action.review;

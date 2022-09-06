@@ -2,6 +2,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as reviewActions from '../../store/reviews';
+import * as spotActions from '../../store/spots';
 import EditReviewForm from '../EditReviewForm/EditReviewForm';
 
 const SpotShow = () => {
@@ -12,8 +13,11 @@ const SpotShow = () => {
   const currentUser = useSelector(state => state.session.user)
   const review = useSelector(state => state.reviews)
   const spot = allSpots[spotId]
+
   const currentSpotOwner = spot.ownerId
   const usersWithReviews = [];
+
+  // console.log("review[spotId]", review[spotId])
 
   if (review[spotId]) {
     review[spotId].forEach(userReview => {
@@ -22,8 +26,11 @@ const SpotShow = () => {
   }
 
   useEffect(() => {
+    dispatch(spotActions.fetchSpots())
     dispatch(reviewActions.fetchReviews(spotId))
   }, [dispatch]);
+
+  // console.log("SPOTSHOW: SPOT", allSpots)
 
   // console.log("REVIEW", review[spotId])
 
@@ -35,6 +42,7 @@ const SpotShow = () => {
   }
 
   return (
+    <>
     <section>
       Name: {spot.name}
       <br/>
@@ -73,6 +81,7 @@ const SpotShow = () => {
       }
       <Link to="/">Back to spots List</Link>
     </section>
+    </>
   );
 }
 
