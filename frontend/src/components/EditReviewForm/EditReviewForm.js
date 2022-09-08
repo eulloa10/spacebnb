@@ -31,7 +31,7 @@ const EditReviewForm = () => {
         if (data.errors) setErrors({...data.errors});
       });
 
-    if (res) history.push(`/`)
+    if (res) history.push(`/user/reviews`)
   }
 
   return (
