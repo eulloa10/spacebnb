@@ -1,5 +1,33 @@
-.spot-show-section {
+/* .spot-show-section {
   display: grid;
   justify-content: center;
   margin-top: 5%;
+} */
+
+.spot-show-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: none;
+  width: none;
+}
+
+.spot-name {
+  width: 90%;
+  margin-top: 5%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 26px;
+}
+.spot-show-subheading {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.spot-show-image {
+  width: 90%;
+  height: 40%;
+  border-radius: 2%;
 }

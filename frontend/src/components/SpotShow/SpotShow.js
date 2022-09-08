@@ -5,6 +5,7 @@ import * as reviewActions from '../../store/reviews';
 import * as spotActions from '../../store/spots';
 import * as singleSpotActions from '../../store/singleSpot';
 import * as singleSpotReviewsActions from '../../store/singleSpotReviews';
+import "./SpotShow.css";
 import EditReviewForm from '../EditReviewForm/EditReviewForm';
 
 const SpotShow = () => {
@@ -63,12 +64,21 @@ const SpotShow = () => {
   return (
     <section>
     {spot &&
-    <>
-      <div>{spot.name}</div>
-      <img src={`${spot.previewImage}`} alt="spot"/>
+    <div className="spot-show-all">
+      <h1 className="spot-name">{spot.name}</h1>
+      <div className="spot-show-subheading">
+        <div>&#9733; {spot.avgStarRating}</div>
+        <div>&#8226;</div>
+        <div>{spot.numReviews} reviews</div>
+        <div>{spot.city}, {spot.state}, {spot.country}</div>
+      </div>
+
+      <img className="spot-show-image" src={`${spot.previewImage}`} alt="spot"/>
+      <div>Space home hosted by {spot.Owner.firstName}</div>
       <div>{spot.description}</div>
       {spot.price}
-      <div>Reviews</div>
+      <div>&#9733; {spot.avgStarRating}</div>
+      <div>{spot.numReviews} reviews</div>
       {
         !currSpotReviews &&
         <div>No reviews yet</div>
@@ -76,6 +86,7 @@ const SpotShow = () => {
       {spot && currentUser && currSpotReviews &&
       currSpotReviews.map((singleReview, index) =>
         <div key={index}>
+          <li>{singleReview.User.firstName}</li>
           <li>{singleReview.review}</li>
           {
             (spot.Owner.id !== currentUser.id) && (singleReview.userId === currentUser.id) &&
@@ -92,7 +103,7 @@ const SpotShow = () => {
          <Link to={`/spots/${spotId}/reviews/add`}><button>Add a Review</button></Link>
       }
       <Link to="/">Back to spots List</Link>
-    </>
+    </div>
     }
     </section>
     // <>
