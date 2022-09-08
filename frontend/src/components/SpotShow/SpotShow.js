@@ -12,7 +12,7 @@ const SpotShow = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { spotId } = useParams();
-  // const allSpots = useSelector(state => state.spots);
+  const noAuthSpots = useSelector(state => state.spots);
   const spot = useSelector(state => state.singleSpot[spotId]);
   const currentUser = useSelector(state => state.session.user)
   // const currSpotReviews = useSelector(state => state.reviews)
@@ -24,13 +24,15 @@ const SpotShow = () => {
   // if (!currSpotReviews) currSpotReviews = null;
 
   console.log("currSpotReviews", currSpotReviews)
-  if (currSpotReviews) {
+  if (currSpotReviews && currentUser) {
     currSpotReviews.map(review =>  userHasReviews.push(review.userId === currentUser.id))
   } else {
     userHasReviews.push(false);
   }
 
-  console.log(userHasReviews)
+  console.log("SPOTID", spotId)
+  console.log("CURRENTUSER", currentUser)
+  console.log("NOAUTHSPOTS", noAuthSpots)
 
   // const currentSpotOwner = spot.ownerId
   const usersWithReviews = [];
@@ -44,7 +46,7 @@ const SpotShow = () => {
   // }
 
   useEffect(() => {
-    // dispatch(spotActions.fetchSpots())
+    dispatch(spotActions.fetchSpots())
     dispatch(singleSpotActions.fetchSpots(spotId));
      dispatch(singleSpotReviewsActions.fetchSingleSpotReviews(spotId))
     // dispatch(reviewActions.fetchReviews(spotId))
@@ -63,7 +65,39 @@ const SpotShow = () => {
 
   return (
     <section>
-    {spot &&
+    {
+     spot && !currentUser && spotId &&
+     <div className="spot-show-all">
+       <h1 className="spot-name">{spot.name}</h1>
+       <div className="spot-show-subheading">
+         <div>&#9733; {spot.avgStarRating}</div>
+         <div>&#8226;</div>
+         <div>{spot.numReviews} reviews</div>
+         <div>{spot.city}, {spot.state}, {spot.country}</div>
+       </div>
+
+       <img className="spot-show-image" src={`${spot.previewImage}`} alt="spot"/>
+       <div>Space home hosted by {spot.Owner.firstName}</div>
+       <div>{spot.description}</div>
+       {spot.price}
+       <div>&#9733; {spot.avgStarRating}</div>
+       <div>{spot.numReviews} reviews</div>
+       </div>
+    }
+    {/* {
+      spot && !currentUser && spotId &&
+      <div className="spot-show-all">
+      <h1 className="spot-name">{spot.name}</h1>
+      <div className="spot-show-subheading">
+        <div>{noAuthSpots[spotId].city}, {spot.state}, {spot.country}</div>
+      </div>
+      <img className="spot-show-image" src={`${spot.previewImage}`} alt="spot"/>
+      <div>{spot.description}</div>
+      <div>${spot.price}<span>night</span></div>
+      <Link to="/">Back to spots List</Link>
+      </div>
+    } */}
+    {spot && currentUser &&
     <div className="spot-show-all">
       <h1 className="spot-name">{spot.name}</h1>
       <div className="spot-show-subheading">

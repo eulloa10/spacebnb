@@ -1,7 +1,11 @@
 .main-header {
   background-color: white;
-  margin-left: 5%;
-  margin-right: 5%;
+  position: fixed;
+  width: 100%;
+  height: 10%;
+  border-bottom: solid;
+  border-color: rgb(193, 193, 193);
+  border-width: 1px;
 }
 
 .main-header-options {
@@ -9,7 +13,7 @@
   justify-content: space-between;
   align-items: center;
   justify-items: center;
-  margin-top: 2%
+  /* margin-top: 2% */
 }
 
 .login-button {
@@ -35,14 +39,15 @@
 }
 
 .auth-actions {
-  width: 100%;
+
   display: flex;
   justify-items: space-between;
   align-items: center;
 }
 
 .home {
-  color: black;
+  color: red;
+  font-weight: bold;
 }
 
 .home:link {

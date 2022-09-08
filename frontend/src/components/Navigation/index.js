@@ -36,6 +36,7 @@ function Navigation({ isLoaded }){
   }
 
   return (
+    <>
     <header className='main-header'>
       <ul className='main-header-options'>
         <li className='space-home'>
@@ -48,6 +49,8 @@ function Navigation({ isLoaded }){
         </li>
       </ul>
     </header>
+    </>
+
   );
 }
 
