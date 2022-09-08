@@ -38,16 +38,16 @@ function App() {
         <Route exact path="/all/spots/:spotId">
           <SpotShow />
         </Route>
-        <Route exact path="/me/spots">
+        <Route exact path="/user/spots">
           <MySpotsIndex />
         </Route>
         <Route exact path="/me/spots/new">
           <CreateSpotForm />
         </Route>
-        <Route exact path="/me/spots/:spotId/edit">
+        <Route exact path="/user/spots/:spotId/edit">
           <EditSpotForm />
         </Route>
-        <Route exact path="/me/reviews">
+        <Route exact path="/user/reviews">
           <MyReviews />
         </Route>
         <Route exact path="/reviews/:reviewId/edit">
@@ -55,9 +55,6 @@ function App() {
         </Route>
         <Route exact path="/spots/:spotId/reviews/add">
           <CreateReviewForm />
-        </Route>
-        <Route exact path="/me/reviews">
-          <MyReviews />
         </Route>
       </Switch>
     )}

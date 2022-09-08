@@ -43,10 +43,10 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li className="current-user-email">{user.email}</li>
           <li>
-              <Link to="/me/spots"><button className="my-spots">My Spots</button></Link>
+              <Link to="/user/spots"><button className="my-spots">My Spots</button></Link>
           </li>
           <li>
-              <Link to="/me/reviews"><button className="user-reviews">My Reviews</button></Link>
+              <Link to="/user/reviews"><button className="user-reviews">My Reviews</button></Link>
           </li>
           <li>
             <button className="logout" onClick={logout}>Log Out</button>

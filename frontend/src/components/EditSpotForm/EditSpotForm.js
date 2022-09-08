@@ -27,15 +27,13 @@ function EditSpotForm() {
 
     e.preventDefault();
     const updatedSpot = {address, city, state, country, lat, lng, name, description, price};
-    // dispatch(spotActions.updateSpot(spotId, updatedSpot));
-    // history.push(`/me/spots`)
     const res = await dispatch(spotActions.updateSpot(spotId, updatedSpot))
       .catch(async (res) => {
         const data = await res.json();
         if (data.errors) setErrors({...data.errors});
       });
 
-    if (res) history.push(`/me/spots`)
+    if (res) history.push(`/user/spots`)
   }
 
   return (

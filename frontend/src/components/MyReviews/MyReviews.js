@@ -26,7 +26,7 @@ const MyReviews = () => {
       reviewDetails.map(userReview => {
         return (
         <li className="my-reviews">
-        <Link to={`/spots/${userReview.spotId}`}>
+        <Link to={`/all/spots/${userReview.spotId}`}>
           <li>{spots[userReview.spotId].name}</li>
           <img src={`${spots[userReview.spotId].previewImage}`} alt="spot"/>
           <li>Review: {userReview.review}</li>

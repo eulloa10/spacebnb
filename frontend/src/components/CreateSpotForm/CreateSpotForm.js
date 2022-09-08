@@ -34,7 +34,7 @@ function CreateSpotForm() {
     });
 
     if (res) {
-      history.push('/me/spots')
+      history.push('/user/spots')
     }
   }
 

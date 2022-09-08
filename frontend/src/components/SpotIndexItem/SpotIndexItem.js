@@ -32,10 +32,10 @@ const SpotIndexItem = ({ spot }) => {
         </div>
       </Link>
 
-      {user && user.id === spot.ownerId && currentPath === '/me/spots' &&
+      {user && user.id === spot.ownerId && currentPath === '/user/spots' &&
       (
       <>
-        <Link to={`/me/spots/${spot.id}/edit`}><button>Edit</button></Link>
+        <Link to={`/user/spots/${spot.id}/edit`}><button>Edit</button></Link>
         <button onClick={deleteSpot}>Delete</button>
       </>
       )
