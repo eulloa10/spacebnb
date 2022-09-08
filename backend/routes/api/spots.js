@@ -354,9 +354,9 @@ router.get(
     const spotId = Number(req.params.id)
 
     const spotDetails = await Spot.findByPk(spotId, {
-      attributes: {
-        exclude: ['previewImage']
-      },
+      // attributes: {
+      //   exclude: ['previewImage']
+      // },
       include: [{
           model: Image,
           attributes: [
@@ -402,7 +402,7 @@ router.get(
 
     const ratingSum = ratings[0].dataValues.sumOfStars
 
-    const avgStarRating = (ratingSum / reviewCount).toFixed(1)
+    let avgStarRating = (ratingSum / reviewCount).toFixed(1)
 
     if (reviewCount === 0) {
       avgStarRating = 0;
