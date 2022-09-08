@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session'
 import './Navigation.css';
+import spaceIcon from '../../images/spaceicon.png'
 
 function Navigation({ isLoaded }){
   const dispatch = useDispatch();
@@ -26,9 +27,9 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <div className='auth-actions'>
-          <NavLink className='login-button' to="/signin">Log In</NavLink>
-          <NavLink className='signup-button' to="/signup">Sign Up</NavLink>
-          <NavLink onClick={logInDemoUser} className='demo-user-button' to="/">Demo User</NavLink>
+          <NavLink to="/signin"><button className='login-button'>Log In</button></NavLink>
+          <NavLink to="/signup"><button className='signup-button'>Sign Up</button></NavLink>
+          <NavLink onClick={logInDemoUser} to="/"><button className='demo-user-button'>Demo User</button></NavLink>
         </div>
       </>
     );
@@ -37,8 +38,10 @@ function Navigation({ isLoaded }){
   return (
     <header className='main-header'>
       <ul className='main-header-options'>
-        <li>
-          <NavLink className='home' exact to="/">Spacebnb</NavLink>
+        <li className='space-home'>
+          <NavLink className='home' exact to="/">
+            <img src={spaceIcon} alt="icon"/>pacebnb
+          </NavLink>
         </li>
         <li className='session-links'>
           {isLoaded && sessionLinks}

@@ -1,0 +1,37 @@
+.my-spots {
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.user-reviews {
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.logout {
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.user-reviews:hover {
+  background-color: black;
+  color: white;
+}
+
+.my-spots:hover {
+  background-color: black;
+  color: white;
+}
+
+.logout:hover {
+  background-color: black;
+  color: white;
+}
+
+.current-user-email {
+  color: black;
+  font-weight: lighter;
+}

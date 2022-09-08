@@ -9,7 +9,9 @@ const SpotIndexItem = ({ spot }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const currentPath = location.pathname;
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session.user);
+
+  // console.log("SPOTINDEXITEM",spot);
 
   const deleteSpot = (e) => {
     dispatch(deleteSelectedSpot(spot.id))
@@ -19,14 +21,16 @@ const SpotIndexItem = ({ spot }) => {
   return (
     <>
     <li>
-      <Link to={`/spots/${spot.id}`}>
+      <Link className="spot-link" to={`/spots/${spot.id}`}>
         <div className="spot">
-          <div>{spot.name}</div>
           <div>
             <img className="spot-image" src={`${spot.previewImage}`} alt="spot"/>
           </div>
-          <div>{spot.description}</div>
-          <div>{spot.price}</div>
+          <div>
+            <div className="spot-name">{spot.name}</div>
+            <div>{spot.city}, {spot.state}</div>
+            <div className="night"><span className="spot-price">${spot.price}</span> night</div>
+          </div>
         </div>
       </Link>
 

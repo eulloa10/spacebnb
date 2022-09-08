@@ -5,10 +5,24 @@
 }
 
 .spot-description {
-  font-weight: bold;
-  font-family: sans-serif;
+  color: grey;
+  font-weight:lighter;
 }
 
 .spot {
   border-radius: 5%;
+}
+
+.spot-link {
+  color: black;
+  text-decoration: none;
+}
+
+.spot-name,.spot-price {
+  font-weight: bold;
+}
+
+.night {
+  color: black;
+  font-weight: lighter;
 }

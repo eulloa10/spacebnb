@@ -12,9 +12,13 @@ const MyReviews = () => {
   const reviewDetails = Object.values(currentUserReviews);
 
   useEffect(() => {
-    dispatch(myReviewActions.currentUserReviews());
     dispatch(spotActions.fetchSpots());
+    dispatch(myReviewActions.currentUserReviews());
   }, [dispatch]);
+
+  console.log("MYREVIEWSCUR", currentUserReviews)
+  console.log("MYREVIEWSSPOTS", spots)
+  console.log("REVIEWDETAILS", reviewDetails)
 
   if (!currentUserReviews) {
     return null;

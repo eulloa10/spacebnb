@@ -44,6 +44,8 @@ const updateReview = (review) => {
 export const fetchReviews = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/spots/${spotId}/reviews`);
   const data = await res.json();
+
+  // console.log("CHECKING EMPTY", data.Reviews.length === 0)
   if (res.ok) {
     dispatch(getReviews(data));
   }
@@ -113,8 +115,11 @@ const reviewsReducer = (state = initialState, action) => {
   let newState = {...initialState}
 	switch (action.type) {
 		case LOAD_REVIEWS:
-      newState = {...state};
-      console.log("LOAD_REVIEWS NEW STATE", action.reviews)
+      newState = {...initialState};
+      if (action.reviews.Reviews.length === 0) {
+        return newState;
+      }
+      // console.log("LOAD_REVIEWS NEW STATE", action.reviews)
 			newState[action.reviews.Reviews[0].spotId] = action.reviews.Reviews;
 			return newState;
     case LOAD_CURRENT_USER_REVIEWS:
