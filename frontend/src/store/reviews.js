@@ -45,7 +45,6 @@ export const fetchReviews = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/spots/${spotId}/reviews`);
   const data = await res.json();
 
-  // console.log("CHECKING EMPTY", data.Reviews.length === 0)
   if (res.ok) {
     dispatch(getReviews(data));
   }
@@ -55,8 +54,6 @@ export const fetchReviews = (spotId) => async (dispatch) => {
 export const currentUserReviews = () => async (dispatch) => {
   const res = await csrfFetch(`/me/reviews`);
   const data = await res.json();
-
-  console.log("REVIEWDATA", data)
 
   if (res.ok) {
     dispatch(getCurrentUserReviews(data));
@@ -68,7 +65,7 @@ export const currentUserReviews = () => async (dispatch) => {
 };
 
 export const editReview = (reviewId, reviewData) => async (dispatch) => {
-  // console.log("RDATA", reviewData.stars)
+
   const res = await csrfFetch(`/reviews/${reviewId}`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -119,13 +116,13 @@ const reviewsReducer = (state = initialState, action) => {
       if (action.reviews.Reviews.length === 0) {
         return newState;
       }
-      // console.log("LOAD_REVIEWS NEW STATE", action.reviews)
+
 			newState[action.reviews.Reviews[0].spotId] = action.reviews.Reviews;
 			return newState;
     case LOAD_CURRENT_USER_REVIEWS:
       newState = initialState;
       action.reviews.Reviews.map((review) => newState[review.id] = review)
-      // console.log("LOAD_CURRENT_USER_REVIEWS", newState)
+
       return newState;
     case EDIT_REVIEW:
       newState = {...state};

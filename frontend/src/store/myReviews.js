@@ -13,8 +13,6 @@ export const currentUserReviews = () => async (dispatch) => {
   const res = await csrfFetch(`/me/reviews`);
   const data = await res.json();
 
-  console.log("REVIEWDATA", data)
-
   if (res.ok) {
     dispatch(getCurrentUserReviews(data));
   } else {
@@ -32,7 +30,6 @@ const myReviewsReducer = (state = initialState, action) => {
     case LOAD_CURRENT_USER_REVIEWS:
       newState = {...initialState};
       action.reviews.Reviews.map((review) => newState[review.id] = review)
-      console.log("LOAD_CURRENT_USER_REVIEWS", newState)
       return newState;
 		default:
 			return state;

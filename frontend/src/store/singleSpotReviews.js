@@ -13,7 +13,6 @@ export const fetchSingleSpotReviews = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/spots/${spotId}/reviews`);
   const data = await res.json();
 
-  // console.log("CHECKING EMPTY", data.Reviews.length === 0)
   if (res.ok) {
     dispatch(getReviews(data));
   }
@@ -30,7 +29,7 @@ const singleSpotReviewsReducer = (state = initialState, action) => {
       if (action.reviews.Reviews.length === 0) {
         return {newState};
       }
-      // console.log("LOAD_REVIEWS NEW STATE", action.reviews)
+
 			newState[action.reviews.Reviews[0].spotId] = action.reviews.Reviews;
 			return newState;
 		default:

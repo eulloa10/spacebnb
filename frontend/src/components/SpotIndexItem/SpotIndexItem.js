@@ -11,8 +11,6 @@ const SpotIndexItem = ({ spot }) => {
   const currentPath = location.pathname;
   const user = useSelector(state => state.session.user);
 
-  // console.log("SPOTINDEXITEM",spot);
-
   const deleteSpot = (e) => {
     dispatch(deleteSelectedSpot(spot.id))
     e.preventDefault();

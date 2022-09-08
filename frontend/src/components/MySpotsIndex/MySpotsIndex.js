@@ -11,14 +11,13 @@ const MySpotsIndex = () => {
   const spots = useSelector(state => state.spots)
   const user  = useSelector(state => state.session.user)
   const allSpotsList = [];
-  console.log(user)
+
   for (let key in spots) {
     if (spots[key].ownerId === user.id) {
       allSpotsList.push(spots[key]);
     }
   }
 
-  console.log("ALLSPOTSLIST", allSpotsList);
 
   useEffect(() => {
     dispatch(fetchSpots());

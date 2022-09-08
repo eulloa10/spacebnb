@@ -16,10 +16,6 @@ const MyReviews = () => {
     dispatch(myReviewActions.currentUserReviews());
   }, [dispatch]);
 
-  console.log("MYREVIEWSCUR", currentUserReviews)
-  console.log("MYREVIEWSSPOTS", spots)
-  console.log("REVIEWDETAILS", reviewDetails)
-
   if (!currentUserReviews) {
     return null;
   }

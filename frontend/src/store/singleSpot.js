@@ -13,7 +13,7 @@ export const fetchSpots = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/spots/${spotId}`);
   const data = await res.json();
 
-  console.log("FETCHSPOTRES", data)
+
   if (res.ok) {
     dispatch(receiveSpots(data));
   } else {

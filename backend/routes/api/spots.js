@@ -460,7 +460,6 @@ router.put(
   '/:spotId',
   [requireAuth, validateSpotEdit],
   async (req, res) => {
-    // console.log(req.user.id)
     const {
       address,
       city,
