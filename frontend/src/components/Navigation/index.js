@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session'
@@ -26,11 +26,11 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <div className='auth-actions'>
+
           <NavLink to="/account/signin"><button className='login-button'>Log In</button></NavLink>
           <NavLink to="/account/signup"><button className='signup-button'>Sign Up</button></NavLink>
           <NavLink onClick={logInDemoUser} to="/"><button className='demo-user-button'>Demo User</button></NavLink>
-        </div>
+
       </>
     );
   }
@@ -41,7 +41,7 @@ function Navigation({ isLoaded }){
       <ul className='main-header-options'>
         <li className='space-home'>
           <NavLink className='home' exact to="/">
-            <img src={spaceIcon} alt="icon"/>pacebnb
+            <img src={spaceIcon} alt="icon"/>spacebnb
           </NavLink>
         </li>
         <li className='session-links'>
@@ -49,6 +49,12 @@ function Navigation({ isLoaded }){
         </li>
       </ul>
     </header>
+    <footer className='main-footer'>
+      <ul>
+        <li>&copy; 2022 Spacebnb</li>
+        <li><a href="https://github.com/eulloa10/airbnb">About</a></li>
+      </ul>
+    </footer>
     </>
 
   );
