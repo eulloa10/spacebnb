@@ -1,4 +1,4 @@
-.main-header {
+/* .main-header {
   background-color: white;
   position: fixed;
   width: 100%;
@@ -6,7 +6,7 @@
   border-bottom: solid;
   border-color: rgb(193, 193, 193);
   border-width: 1px;
-}
+} */
 
 .main-header-options {
   display: flex;
