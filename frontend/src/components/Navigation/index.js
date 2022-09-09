@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session'
@@ -11,6 +11,9 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
+
+  const currentPath = useLocation();
+
 
   const logInDemoUser = () => {
     dispatch(sessionActions.login({
@@ -49,12 +52,15 @@ function Navigation({ isLoaded }){
         </li>
       </ul>
     </header>
-    <footer className='main-footer'>
-      <ul className="footer-details">
-        <li>&copy; 2022 Spacebnb</li>
-        <li className="about-link-container"><a className="about-link" href="https://github.com/eulloa10/airbnb">About</a></li>
-      </ul>
-    </footer>
+    {
+      currentPath.pathname === "/" &&
+      <footer className='main-footer'>
+        <ul className="footer-details">
+          <li>&copy; 2022 Spacebnb</li>
+          <li className="about-link-container"><a className="about-link" href="https://github.com/eulloa10/airbnb">About</a></li>
+        </ul>
+      </footer>
+    }
     </>
 
   );

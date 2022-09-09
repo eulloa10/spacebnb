@@ -47,12 +47,14 @@ const SpotShow = () => {
       <div className="spot-show-container">
         <div className="spot-show-top">
           <h1 className="spot-name">{spot.name}</h1>
-            <div className="spot-show-subheading">
-              <div>&#9733; {spot.avgStarRating}</div>
-              <div>&#8226;</div>
-              <div>{spot.numReviews} reviews</div>
-              <div>{spot.city}, {spot.state}, {spot.country}</div>
-            </div>
+            <ul className="spot-show-subheading">
+              <li>&#9733;</li>
+              <li>{spot.avgStarRating}</li>
+              <li>&#8226;</li>
+              <li>{spot.numReviews} reviews</li>
+              <li>test</li>
+              <li>{spot.city}, {spot.state}, {spot.country}</li>
+            </ul>
         </div>
 
 

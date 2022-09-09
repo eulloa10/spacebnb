@@ -23,6 +23,15 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+
+.spot-show-subheading {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  align-items: center;
+  width: 100%;
+}
+
 /* .spot-name {
   width: 89%;
   margin-top: 4%;
