@@ -39,7 +39,7 @@ function SigninFormPage() {
       <div className="signin-container">
 
 
-      <h1>Welcome to Spacebnb</h1>
+      <h1 className="welcome">Welcome to Spacebnb</h1>
       {/* <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul> */}

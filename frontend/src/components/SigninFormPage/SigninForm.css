@@ -49,5 +49,9 @@
 
 .login-email-input, .login-password-input {
   border: 1px #767676 solid;
-  height: 50%;
+  height: 100%;
+}
+
+.welcome {
+  width: auto;
 }

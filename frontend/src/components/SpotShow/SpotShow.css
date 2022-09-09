@@ -4,13 +4,26 @@
   margin-top: 5%;
 } */
 
-.spot-show-all {
+.spot-show-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 80vh;
+  width: 100vw;
+  top: 150px;
 }
 
 .spot-name {
+  font-size: 26px;
+}
+
+.spot-show-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+/* .spot-name {
   width: 89%;
   margin-top: 4%;
   display: flex;
@@ -28,4 +41,4 @@
   width: 1200px;
   height: 500px;
   border-radius: 2%;
-}
+} */

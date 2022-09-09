@@ -44,14 +44,17 @@ const SpotShow = () => {
     <section>
     {
      spot && !currentUser && spotId &&
-     <div className="spot-show-all">
-       <h1 className="spot-name">{spot.name}</h1>
-       <div className="spot-show-subheading">
-         <div>&#9733; {spot.avgStarRating}</div>
-         <div>&#8226;</div>
-         <div>{spot.numReviews} reviews</div>
-         <div>{spot.city}, {spot.state}, {spot.country}</div>
-       </div>
+      <div className="spot-show-container">
+        <div className="spot-show-top">
+          <h1 className="spot-name">{spot.name}</h1>
+            <div className="spot-show-subheading">
+              <div>&#9733; {spot.avgStarRating}</div>
+              <div>&#8226;</div>
+              <div>{spot.numReviews} reviews</div>
+              <div>{spot.city}, {spot.state}, {spot.country}</div>
+            </div>
+        </div>
+
 
        <img className="spot-show-image" src={`${spot.previewImage}`} alt="spot"/>
        <div>Space home hosted by {spot.Owner.firstName}</div>
@@ -62,7 +65,7 @@ const SpotShow = () => {
        </div>
     }
     {spot && currentUser &&
-    <div className="spot-show-all">
+    <div className="spot-show-container">
       <h1 className="spot-name">{spot.name}</h1>
       <div className="spot-show-subheading">
         <div>&#9733; {spot.avgStarRating}</div>
