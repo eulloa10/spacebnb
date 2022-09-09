@@ -36,38 +36,42 @@ function SigninFormPage() {
 
   return (
     <form className="signin-form" onSubmit={handleSubmit}>
+      <div className="signin-container">
+
+
+      <h1>Welcome to Spacebnb</h1>
       {/* <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul> */}
-      <ul>
+      <ul className="signin-errors">
       {
         Object.keys(errors).map(error => {
-          return (<ul>
+          return (<li>
             {errors[error]}
-          </ul>)
+          </li>)
         }
         )
       }
       </ul>
-      <label>
-        Email
-        <input
+      <div className="login-info-btns">
+
+        <input className="login-email-input"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
           required
         />
-      </label>
-      <label>
-        Password
-        <input
+        <input className="login-password-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
           required
         />
-      </label>
-      <button type="submit">Log In</button>
+      </div>
+      <button className="submit-login" type="submit">Continue</button>
+      </div>
     </form>
   );
 }

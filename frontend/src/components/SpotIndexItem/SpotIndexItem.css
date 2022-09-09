@@ -5,12 +5,8 @@
 }
 
 .spot-description {
-  color: grey;
+  color: #767676;
   font-weight:lighter;
-}
-
-.spot {
-  border-radius: 5%;
 }
 
 .spot-link {
@@ -18,11 +14,19 @@
   text-decoration: none;
 }
 
-.spot-name,.spot-price {
+.spot-price {
   font-weight: bold;
+}
+
+.landing-city-state {
+  font-size: 15px;
 }
 
 .night {
   color: black;
   font-weight: lighter;
+}
+
+.spot-name {
+  font-size: 15px;
 }

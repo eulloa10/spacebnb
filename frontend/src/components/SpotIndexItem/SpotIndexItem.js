@@ -26,7 +26,7 @@ const SpotIndexItem = ({ spot }) => {
           </div>
           <div>
             <div className="spot-name">{spot.name}</div>
-            <div>{spot.city}, {spot.state}</div>
+            <div className="landing-city-state">{spot.city}, {spot.state}</div>
             <div className="night"><span className="spot-price">${spot.price}</span> night</div>
           </div>
         </div>

@@ -1,5 +1,53 @@
 .signin-form {
-  border: blue;
-  height: 500px;
-  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100vw;
+  margin-top: 15%
+}
+
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5%;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  height: 100%;
+  border: solid #767676 1px;
+  border-radius: 25px;
+}
+
+.submit-login {
+  background-color: #FF5A5F;
+  color:white;
+  height: 10%;
+  width: 80%;
+  border-color: #FF5A5F;
+  border-radius: 8px;
+  font: 24px;
+  margin-top: 20%;
+  font-size: 16px;
+}
+
+.signin-errors {
+  color: #FF5A5F;
+}
+
+.login-info-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px #767676 solid;
+  border-radius: 5px;
+  width: 50%;
+  height: 12%;
+}
+
+
+.login-email-input, .login-password-input {
+  border: 1px #767676 solid;
+  height: 50%;
 }

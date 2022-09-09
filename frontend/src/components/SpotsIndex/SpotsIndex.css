@@ -7,5 +7,11 @@
   row-gap: 5%;
   column-gap: 5%;
   margin-top: 8%;
+  margin-bottom: 10%;
   width: 100%;
+}
+
+.all-spots {
+  margin-left: 8%;
+  margin-right: 8%;
 }

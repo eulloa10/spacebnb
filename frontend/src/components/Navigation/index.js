@@ -27,9 +27,9 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
 
-          <NavLink to="/account/signin"><button className='login-button'>Log In</button></NavLink>
-          <NavLink to="/account/signup"><button className='signup-button'>Sign Up</button></NavLink>
-          <NavLink onClick={logInDemoUser} to="/"><button className='demo-user-button'>Demo User</button></NavLink>
+          <NavLink className="login-container" to="/account/signin"><button className='login-button'>Log In</button></NavLink>
+          <NavLink className="signup-container" to="/account/signup"><button className='signup-button'>Sign Up</button></NavLink>
+          <NavLink className="demo-container" onClick={logInDemoUser} to="/"><button className='demo-user-button'>Demo User</button></NavLink>
 
       </>
     );
@@ -50,9 +50,9 @@ function Navigation({ isLoaded }){
       </ul>
     </header>
     <footer className='main-footer'>
-      <ul>
+      <ul className="footer-details">
         <li>&copy; 2022 Spacebnb</li>
-        <li><a href="https://github.com/eulloa10/airbnb">About</a></li>
+        <li className="about-link-container"><a className="about-link" href="https://github.com/eulloa10/airbnb">About</a></li>
       </ul>
     </footer>
     </>

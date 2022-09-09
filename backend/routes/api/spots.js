@@ -383,24 +383,33 @@ router.get(
       where: {
         spotId: spotId
       },
-      attributes: [
-        [Sequelize.fn('COUNT', Sequelize.col('review')), 'numReviews']
-      ]
+      // attributes: [
+      //   [Sequelize.fn('COUNT', Sequelize.col('review')), 'numReviews']
+      // ]
     })
 
-    const reviewCount = reviews[0].dataValues.numReviews
+    // Before modification
+    // const reviewCount = reviews[0].dataValues.numReviews
+
+    // After modification
+    const reviewCount = reviews.length;
+
     spotDetails.dataValues['numReviews'] = reviewCount
 
     const ratings = await Review.findAll({
       where: {
         spotId: spotId
       },
-      attributes: [
-        [Sequelize.fn('SUM', Sequelize.col('stars')), 'sumOfStars']
-      ]
+      // attributes: [
+      //   [Sequelize.fn('SUM', Sequelize.col('stars')), 'sumOfStars']
+      // ]
     })
 
-    const ratingSum = ratings[0].dataValues.sumOfStars
+    // Before modification
+    // const ratingSum = ratings[0].dataValues.sumOfStars
+
+    // After modification
+    const ratingSum = ratings.length;
 
     let avgStarRating = (ratingSum / reviewCount).toFixed(1)
 
