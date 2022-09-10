@@ -405,6 +405,7 @@ router.get(
       // ]
     })
 
+    console.log("RATINGS", ratings)
     // Before modification
     // const ratingSum = ratings[0].dataValues.sumOfStars
 

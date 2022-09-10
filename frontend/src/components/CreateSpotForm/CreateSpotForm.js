@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
+import './CreateSpotForm.css';
 
 
 function CreateSpotForm() {
@@ -39,8 +40,12 @@ function CreateSpotForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
+    <>
+
+    <form className="create-spot-form" onSubmit={handleSubmit}>
+      <div className="create-spot-form-container">
+
+      <ul className="create-spot-errors">
         {
         Object.keys(errors).map(error => {
           return (<li>
@@ -50,98 +55,99 @@ function CreateSpotForm() {
         )
       }
       </ul>
-      <label>
-        Address
+      <div className="create-spot-info-btns">
+
+
         <input
+           className="edit-address-btn"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
+          placeholder="Address"
           required
         />
-      </label>
-      <label>
-        City
         <input
+          className="edit-city-btn"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          placeholder="City"
           required
         />
-      </label>
-      <label>
-        State
+
         <input
+          className="edit-state-btn"
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
+          placeholder="State"
           required
         />
-      </label>
-      <label>
-        Country
+
+
+
         <input
+          className="edit-country-btn"
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
+          placeholder="Country"
           required
         />
-      </label>
-      <label>
-        Lat
         <input
+          className="edit-lat-btn"
           type="number"
           value={lat}
           onChange={(e) => setLat(e.target.value)}
+          placeholder="Latitude"
           required
         />
-      </label>
-      <label>
-        Lng
         <input
+          className="edit-long-btn"
           type="number"
           value={lng}
           onChange={(e) => setLng(e.target.value)}
+          placeholder="Longitude"
           required
         />
-      </label>
-      <label>
-        Name
         <input
+          className="edit-name-btn"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
           required
         />
-      </label>
-      <label>
-        Description
         <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Price
-        <input
+          className="edit-price-btn"
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          placeholder="Price"
           required
         />
-      </label>
-      <label>
-        Preview Image
         <input
+          className="add-image-btn"
           type="text"
           value={previewImage}
           onChange={(e) => setPreviewImage(e.target.value)}
+          placeholder="Preview Image"
           required
         />
-      </label>
-      <button type="submit">Save</button>
+        <textarea
+          className="edit-description-btn"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
+          required
+        />
+
+      </div>
+      <button className="create-spot-btn" type="submit">Create Listing</button>
+      </div>
     </form>
+    </>
   );
 }
 
