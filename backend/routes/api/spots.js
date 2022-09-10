@@ -76,6 +76,11 @@ const validateSpotCreation = [
     checkFalsy: true
   })
   .withMessage('Price per day is required'),
+  check('price')
+  .custom((value, {
+    req
+  }) => value >= 0)
+  .withMessage('Price must be greater than or equal to $0'),
   check('previewImage')
   .exists({
     checkFalsy: true
