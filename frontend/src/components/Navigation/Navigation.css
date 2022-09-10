@@ -38,7 +38,7 @@
 .login-button {
   background-color: white;
   border: white;
-  border-radius: 20%;
+  border-radius: 5px;
   font-weight: bold;
   padding: 10%;
 }
@@ -46,7 +46,7 @@
 .signup-button {
   background-color: white;
   border: white;
-  border-radius: 20%;
+  border-radius: 5px;
   font-weight: bold;
   padding: 10%;
 }
@@ -54,7 +54,7 @@
 .demo-user-button {
   background-color: white;
   border: white;
-  border-radius: 20%;
+  border-radius: 5px;
   font-weight: bold;
   padding: 10%;
 }
@@ -86,7 +86,7 @@
 
 .login-button:hover, .signup-button:hover, .demo-user-button:hover {
   color: black;
-  background-color: #767676;
+  background-color: #e6e5e5;
 }
 
 .home {

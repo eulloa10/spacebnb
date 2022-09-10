@@ -5,23 +5,82 @@
 } */
 
 .spot-show-container {
-  position: relative;
+  position:relative;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
-  height: 80vh;
+  height: 100vh;
   width: 100vw;
-  top: 150px;
+  top: 120px;
+  z-index: -1;
 }
 
 .spot-name {
-  font-size: 26px;
+  font-size: 30px;
 }
 
 .spot-show-top {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 80%;
+}
+
+.spot-show-bottom {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 80%;
+}
+
+.spot-show-owner {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.spot-show-summary {
+  display: flex;
+  justify-content: space-between
+}
+
+.spot-show-book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  gap: 20%;
+  border: 1px #767676 solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.spot-show-book-metrics {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.spot-show-book-metrics-bottom {
+  display:flex;
+  align-items: center;
+  justify-content: flex-star;
+  gap: 5px;
+  font-size: 18px;
+}
+
+.divider {
+  margin-top: 1%;
+  width: 65%;
+  border-bottom: 1px #767676 solid;
+}
+
+.reviews-divider {
+  margin-top: 3%;
+  width: 80%;
+  border-bottom: 1px #767676 solid;
 }
 
 .spot-show-subheading {
@@ -30,6 +89,64 @@
   gap: 5px;
   align-items: center;
   width: 100%;
+  font-size: 16px;
+}
+
+.spot-show-description {
+  margin-top: 3%;
+  /* border: 5px solid gray; */
+  height: 100px;
+  width: 65%
+}
+
+.spot-show-image {
+  width: 80%;
+  height: 50%;
+  border-radius: 10px;
+}
+
+.single-user-review {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2%;
+  width: 50%;
+}
+
+.reviews-container {
+  margin-top: 2%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 80%;
+}
+
+.review-firstname {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 1%;
+}
+
+.review-content {
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.add-review-btn {
+  margin-top: 2%;
+  background-color: #FF5A5F;
+  color:white;
+  width: 15%;
+  border-color: #FF5A5F;
+  border-radius: 8px;
+  font: 22px;
+  font-size: 16px;
+  margin-bottom: 5%;
+}
+
+.no-reviews {
+  margin-top: 2%;
+  font-size: 18px;
 }
 
 /* .spot-name {
@@ -45,9 +162,4 @@
   justify-content: flex-start;
   align-items: center;
 }
-
-.spot-show-image {
-  width: 1200px;
-  height: 500px;
-  border-radius: 2%;
-} */
+*/
