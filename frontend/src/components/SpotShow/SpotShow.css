@@ -1,8 +1,4 @@
-/* .spot-show-section {
-  display: grid;
-  justify-content: center;
-  margin-top: 5%;
-} */
+
 
 .spot-show-container {
   position:relative;
@@ -110,6 +106,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 2%;
+  margin-bottom: 2%;
   width: 50%;
 }
 
@@ -146,20 +143,21 @@
 
 .no-reviews {
   margin-top: 2%;
+  margin-bottom: 2%;
   font-size: 18px;
 }
 
-/* .spot-name {
-  width: 89%;
-  margin-top: 4%;
-  display: flex;
-  justify-content: flex-start;
-  font-size: 19px;
+.edit-review-btn, .delete-review-btn {
+  margin-top: 8%;
+  background-color: #FF5A5F;
+  color:white;
+  width: 50%;
+  border-color: #FF5A5F;
+  border-radius: 8px;
+  font-size: 10x;
+  margin-bottom: 8%;
 }
-.spot-show-subheading {
-  width: 89%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+
+.review-btn-container {
+  width: 40%;
 }
-*/

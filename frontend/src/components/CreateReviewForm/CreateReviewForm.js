@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as reviewActions from '../../store/reviews';
+import './CreateReviewForm.css';
 
 
 function CreateReviewForm() {
@@ -35,8 +36,9 @@ function CreateReviewForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
+    <form className="add-review-form" onSubmit={handleSubmit}>
+      <div className="add-review-container">
+      <ul className="add-review-errors">
         {
         Object.keys(errors).map(error => {
           return (<li>
@@ -46,25 +48,28 @@ function CreateReviewForm() {
         )
       }
       </ul>
-      <label>
-        Review
-        <input
+      <div className="edit-info-btns">
+        <textarea
+        className="review-comments-input"
           type="text"
           value={reviewComments}
           onChange={(e) => setReviewComments(e.target.value)}
+          placeholder="Enter your review here"
           required
         />
-      </label>
-      <label>
-        stars
+      <div className="add-rating-section">
+      <div className="add-rating-title">Rating:</div>
         <input
+        className="rating-input"
           type="number"
           value={stars}
           onChange={(e) => setStars(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Save</button>
+      </div>
+      </div>
+      <button className="add-review-submit-btn" type="submit">Save</button>
+      </div>
     </form>
   );
 }

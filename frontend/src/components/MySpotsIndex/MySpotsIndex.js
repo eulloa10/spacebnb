@@ -28,8 +28,8 @@ const MySpotsIndex = () => {
   }
 
   return (
-    <section className="my-spots">
-      <Link className="add-spot-btn" to="/me/spots/new"><button>Add New Spot</button></Link>
+    <section className="my-homes">
+      <Link className="add-new-spot-container" to="/me/spots/new"><button className="add-new-spot-btn">List a New Home</button></Link>
       <ul className="all-current-spots">
         {
           allSpotsList.map(spot => (

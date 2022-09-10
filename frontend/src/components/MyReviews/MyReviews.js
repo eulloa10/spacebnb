@@ -22,7 +22,7 @@ const MyReviews = () => {
 
   return (
     <ul>
-    { currentUserReviews && spots &&
+    { currentUserReviews && spots && reviewDetails &&
       reviewDetails.map(userReview => {
         return (
         <li className="my-reviews">

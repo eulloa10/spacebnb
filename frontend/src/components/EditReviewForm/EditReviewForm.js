@@ -2,6 +2,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as reviewActions from '../../store/reviews';
+import './EditReviewForm.css';
 
 const EditReviewForm = () => {
   const history = useHistory();
@@ -32,11 +33,13 @@ const EditReviewForm = () => {
       });
 
     if (res) history.push(`/user/reviews`)
+
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
+    <form className="edit-review-form" onSubmit={handleSubmit}>
+      <div className="edit-review-container">
+      <ul className="edit-review-errors">
       {
         Object.keys(errors).map(error => {
           return (<li>
@@ -46,25 +49,29 @@ const EditReviewForm = () => {
         )
       }
       </ul>
-      <label>
-        Review Comments
-        <input
+      <div className="edit-info-btns">
+        <textarea
+          className="review-comments-input"
           type="text"
           value={reviewComments}
           onChange={(e) => setReviewComments(e.target.value)}
+          placeholder="Enter your updated review here..."
           required
         />
-      </label>
-      <label>
-        Stars
-        <input
-          type="number"
-          value={stars}
-          onChange={(e) => setStars(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Save</button>
+
+        <div className="rating-section">
+          <div className="updated-rating-title">New rating:</div>
+          <input
+          className="star-rating-input"
+            type="number"
+            value={stars}
+            onChange={(e) => setStars(e.target.value)}
+            required
+          />
+        </div>
+      </div>
+      <button className="submit-review-edit" type="submit">Update Review</button>
+      </div>
     </form>
   );
 }

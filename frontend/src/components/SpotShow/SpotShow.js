@@ -127,10 +127,10 @@ const SpotShow = () => {
           <li className="review-content">{singleReview.review}</li>
           {
             (spot.Owner.id !== currentUser.id) && (singleReview.userId === currentUser.id) &&
-            <div>
-               <Link to={`/reviews/${singleReview.id}/edit`}><button>Edit Review</button>
+            <div className="review-btn-container">
+               <Link to={`/reviews/${singleReview.id}/edit`}><button className="edit-review-btn">Edit Review</button>
               </Link>
-              <button onClick={(e) => deleteReview(e, singleReview.id)}>Delete Review</button>
+              <button className="delete-review-btn" onClick={(e) => deleteReview(e, singleReview.id)}>Delete Review</button>
             </div>
           }
         </div>

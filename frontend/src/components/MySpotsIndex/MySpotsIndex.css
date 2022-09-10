@@ -1,15 +1,71 @@
+.my-homes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 85%;
+  margin-top: 15%
+}
+
 .all-current-spots {
   display: grid;
+  justify-items: center;
   grid-auto-flow: row;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(400px, 1fr));
-  margin-top: 10%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  row-gap: 5%;
+  column-gap: 5%;
+  margin-top: 8%;
+  margin-bottom: 10%;
+  width: 100%;
 }
 
-.my-spots {
-  margin-top: 10%;
+.modify-spots-container {
+  display:flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-/* .add-spot-btn {
+.edit-spot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
 
-} */
+.delete-spot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-spots-btn, .delete-spots-btn {
+  width: 60%;
+  background-color: #FF5A5F;
+  border: #FF5A5F;
+  border-radius: 4px;
+  color: white;
+}
+
+.add-new-spot-container {
+  margin-top: 2%;
+  width: 15%;
+  display: flex;
+  justify-content: flex-end;
+  border: #FF5A5F;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+}
+
+.add-new-spot-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #FF5A5F;
+  border: #FF5A5F;
+  border-radius: 4px;
+  color: white;
+}
