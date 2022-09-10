@@ -33,7 +33,7 @@ This app is using a [Node](https://nodejs.org/en/)/[Express](https://expressjs.c
 
 # Running the Application
 
-## After cloning the app create a .env file in the /backend directory with the following variables:
+### After cloning the app create a .env file in the /backend directory with the following variables:
 
 ```
 PORT=8000
@@ -41,17 +41,22 @@ DB_FILE=db/dev.db
 JWT_SECRET={Your secret here}
 JWT_EXPIRES_IN=604800
 ```
-
 ### In the /backend directory run:
 ```
 npm install
 ```
-
 ### In the /frontend directory run:
 ```
 npm install
 ```
-
+### Run your database migration:
+```
+dotenv npx sequelize db:migrate
+```
+### Seed your database:
+```
+dotenv npx sequelize db:seed:all
+```
 ### Navigate to the /backend directory and launch your backend by running:
 
  ```
