@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
+import './EditSpotForm.css';
 
 function EditSpotForm() {
   const dispatch = useDispatch();
@@ -19,9 +20,14 @@ function EditSpotForm() {
   const [price, setPrice] = useState(currentSpot.price);
   const [errors, setErrors] = useState({})
 
+
   // if (sessionUser) return (
   //   <Redirect to="/" />
   // );
+
+  useEffect(() => {
+    dispatch(spotActions.fetchSpots());
+  }, [dispatch]);
 
   const handleSubmit = async (e) => {
 
@@ -37,9 +43,14 @@ function EditSpotForm() {
   }
 
   return (
-
-    <form onSubmit={handleSubmit}>
-      <ul>
+    <>
+    {currentSpot &&
+    <form className="edit-spot-form" onSubmit={handleSubmit}>
+      <div className="edit-spot-form-container">
+      {/* <div>
+      <img className="edit-spot-img" src={`${currentSpot.previewImage}`} alt="spot"/>
+      </div> */}
+      <ul className="edit-spot-errors">
       {
         Object.keys(errors).map(error => {
           return (<li>
@@ -49,92 +60,89 @@ function EditSpotForm() {
         )
       }
       </ul>
-      <div>
-        <img src={`${currentSpot.previewImage}`} alt="spot"/>
-      </div>
-      <label>
-        Address
+
+
+      <div className="edit-spot-info-btns">
+      <div className="edit-spot-labels">Address</div>
         <input
+          className="edit-address-btn"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           required
         />
-      </label>
-      <label>
-        City
+        <div className="edit-spot-labels">City</div>
         <input
+          className="edit-city-btn"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           required
         />
-      </label>
-      <label>
-        State
+
+        <div className="edit-spot-labels">State</div>
         <input
+          className="edit-state-btn"
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Country
+        <div className="edit-spot-labels">Country</div>
         <input
+          className="edit-country-btn"
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Lat
+        <div className="edit-spot-labels">Latitude</div>
         <input
+          className="edit-lat-btn"
           type="number"
           value={lat}
           onChange={(e) => setLat(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Lng
+        <div className="edit-spot-labels">Longitude</div>
         <input
+          className="edit-long-btn"
           type="number"
           value={lng}
           onChange={(e) => setLng(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Name
+        <div className="edit-spot-labels">Name</div>
         <input
+          className="edit-name-btn"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Description
+
+        <div className="edit-spot-labels">Price</div>
         <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Price
-        <input
+          className="edit-price-btn"
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Save</button>
+        <div className="edit-spot-labels">Description</div>
+        <textarea
+          className="edit-description-btn"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+      </div>
+      <button className="submit-spot-edit" type="submit">Update Listing</button>
+      </div>
     </form>
+    }
+    </>
   );
 }
 

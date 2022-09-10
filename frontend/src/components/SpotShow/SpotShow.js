@@ -46,7 +46,7 @@ const SpotShow = () => {
      spot && !currentUser && spotId &&
       <div className="spot-show-container">
         <div className="spot-show-top">
-          <h1 className="spot-name">{spot.name}</h1>
+          <h1 className="spot-name-show">{spot.name}</h1>
             <ul className="spot-show-subheading">
               <li>&#9733;</li>
               <li>{spot.avgStarRating}</li>
