@@ -405,14 +405,17 @@ router.get(
       // ]
     })
 
-    console.log("RATINGS", ratings)
+    // console.log("RATINGSTEST", ratings)
+    let starTotal = 0;
+    reviews.map(review => starTotal += review.dataValues.stars)
+    // console.log(starTotal)
     // Before modification
     // const ratingSum = ratings[0].dataValues.sumOfStars
 
     // After modification
     const ratingSum = ratings.length;
 
-    let avgStarRating = (ratingSum / reviewCount).toFixed(1)
+    let avgStarRating = (starTotal / reviewCount).toFixed(1)
 
     if (reviewCount === 0) {
       avgStarRating = 0;
