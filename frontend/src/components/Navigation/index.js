@@ -57,7 +57,7 @@ function Navigation({ isLoaded }){
       <footer className='main-footer'>
         <ul className="footer-details">
           <li>&copy; 2022 Spacebnb</li>
-          <li className="about-link-container"><a className="about-link" href="https://github.com/eulloa10/airbnb/blob/main/frontend/README.md">About</a></li>
+          <li className="about-link-container"><a className="about-link" href="https://github.com/eulloa10/airbnb">About</a></li>
         </ul>
       </footer>
     }
