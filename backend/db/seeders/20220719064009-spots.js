@@ -25,7 +25,7 @@ module.exports = {
      {
       ownerId: 2,
       address: '1234 Testing Avenue',
-      city: 'Los Angeles',
+      city: 'Bakersfield',
       state: 'CA',
       country: 'USA',
       lat: 37.2431,
@@ -59,7 +59,7 @@ module.exports = {
       name: 'Galactic Bay Getaway',
       description: 'A comfortable place to stay',
       price: 500,
-      previewImage: 'https://www.somagnews.com/wp-content/uploads/2020/02/b1-21-e1582998385352.jpg'
+      previewImage: 'https://st.houzz.com/simgs/7671775400f4ad08_8-7058/contemporary-kids.jpg'
     },
     {
      ownerId: 2,
@@ -72,7 +72,7 @@ module.exports = {
      name: 'AVP Bay',
      description: 'A comfortable place to stay',
      price: 1000,
-     previewImage: 'https://images.squarespace-cdn.com/content/v1/581b9de346c3c4dd52bd4ddf/1479090917761-RJYTLC5T029IHSDB37NL/Screen+Shot+2016-11-10+at+10.37.23+PM.png?format=1000w'
+     previewImage: 'https://images2.dwell.com/photos/6191803854900514816/6473092294951608320/original.jpg?auto=format&q=35&w=1600'
    },
    {
      ownerId: 3,
@@ -85,7 +85,7 @@ module.exports = {
      name: 'Milky Way Bay',
      description: 'A comfortable place to stay',
      price: 2000,
-     previewImage: 'http://dornob.com/wp-content/uploads/2012/05/futuristic-curved-house.jpg'
+     previewImage: 'https://st.houzz.com/simgs/7671775400f4ad08_8-7058/contemporary-kids.jpg'
    },
    {
     ownerId: 1,
@@ -98,7 +98,7 @@ module.exports = {
     name: 'Galactic Beach Getaway',
     description: 'A comfortable place to stay',
     price: 250,
-    previewImage: 'https://www.somagnews.com/wp-content/uploads/2020/02/b1-21-e1582998385352.jpg'
+    previewImage: 'https://images2.dwell.com/photos/6366266762595692544/6366267858377641984/original.jpg?auto=format&q=35&w=1600'
   },
   {
    ownerId: 2,
@@ -111,7 +111,7 @@ module.exports = {
    name: 'AVP Beach',
    description: 'A comfortable place to stay',
    price: 500,
-   previewImage: 'https://images.squarespace-cdn.com/content/v1/581b9de346c3c4dd52bd4ddf/1479090917761-RJYTLC5T029IHSDB37NL/Screen+Shot+2016-11-10+at+10.37.23+PM.png?format=1000w'
+   previewImage: 'https://images2.dwell.com/photos/6366266762595692544/6366267204124663808/original.jpg?auto=format&q=35&w=1600'
  },
  {
    ownerId: 3,
@@ -124,8 +124,255 @@ module.exports = {
    name: 'Milky Way Bay',
    description: 'A comfortable place to stay',
    price: 1500,
-   previewImage: 'http://dornob.com/wp-content/uploads/2012/05/futuristic-curved-house.jpg'
- }
+   previewImage: 'https://images2.dwell.com/photos/6328431439726800896/6431151378516905984/original.jpg?auto=format&q=35&w=1600'
+ },
+ {
+  ownerId: 1,
+  address: '1234 Testing Avenue',
+  city: 'Chicago',
+  state: 'IL',
+  country: 'USA',
+  lat: 37.2431,
+  lng: 115.7930,
+  name: 'Starlight Castle',
+  description: 'A comfortable place to stay',
+  price: 400,
+  previewImage: 'https://images2.dwell.com/photos/6191803854900514816/6446250296868438016/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ ownerId: 2,
+ address: '1234 Testing Avenue',
+ city: 'Houston',
+ state: 'TX',
+ country: 'USA',
+ lat: 37.2431,
+ lng: 115.7930,
+ name: 'Nebula Manor',
+ description: 'A comfortable place to stay',
+ price: 800,
+ previewImage: 'https://images2.dwell.com/photos/6191803854900514816/6446250290759331840/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ ownerId: 3,
+ address: '1234 Testing Avenue',
+ city: 'Phoenix',
+ state: 'AZ',
+ country: 'USA',
+ lat: 37.2431,
+ lng: 115.7930,
+ name: 'Cosmic Retreat',
+ description: 'A comfortable place to stay',
+ price: 150,
+ previewImage: 'https://images2.dwell.com/photos/6328431439726800896/6431151381319311360/original.jpg?auto=format&q=35&w=1600'
+},
+{
+  ownerId: 1,
+  address: '1234 Testing Avenue',
+  city: 'Mammoth Lakes',
+  state: 'CA',
+  country: 'USA',
+  lat: 37.2431,
+  lng: 115.7930,
+  name: 'Solar Sanctuary',
+  description: 'A comfortable place to stay',
+  price: 199,
+  previewImage: 'https://images2.dwell.com/photos/6063391372700811264/6133546111073083392/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ ownerId: 2,
+ address: '1234 Testing Avenue',
+ city: 'Lake Tahoe',
+ state: 'CA',
+ country: 'USA',
+ lat: 37.2431,
+ lng: 115.7930,
+ name: 'Andromeda Villa',
+ description: 'A comfortable place to stay',
+ price: 299,
+ previewImage: 'https://images2.dwell.com/photos/6063391372700811264/6133567588258308096/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ ownerId: 3,
+ address: '1234 Testing Avenue',
+ city: 'Ojai',
+ state: 'CA',
+ country: 'USA',
+ lat: 37.2431,
+ lng: 115.7930,
+ name: 'Orion\'s Oasis',
+ description: 'A comfortable place to stay',
+ price: 699,
+ previewImage: 'https://images2.dwell.com/photos/6063391372700811264/6306172659051872256/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ ownerId: 1,
+ address: '1234 Testing Avenue',
+ city: 'Santa Barbara',
+ state: 'CA',
+ country: 'USA',
+ lat: 37.2431,
+ lng: 115.7930,
+ name: 'Lunar Lodge',
+ description: 'A comfortable place to stay',
+ price: 500,
+ previewImage: 'https://images2.dwell.com/photos/6138941323646095360/6179070181367099392/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 2,
+address: '1234 Testing Avenue',
+city: 'Portland',
+state: 'OR',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Sirius Estate',
+description: 'A comfortable place to stay',
+price: 1000,
+previewImage: 'https://images2.dwell.com/photos/6138941323646095360/6179072972060876800/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 3,
+address: '1234 Testing Avenue',
+city: 'Seattle',
+state: 'WA',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Milky Way Mansion',
+description: 'A comfortable place to stay',
+price: 2000,
+previewImage: 'https://images2.dwell.com/photos/6191803854900514816/6376676636055666688/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 1,
+address: '1234 Testing Avenue',
+city: 'Las Vegas',
+state: 'NV',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Galaxy Gardens',
+description: 'A comfortable place to stay',
+price: 250,
+previewImage: 'https://images2.dwell.com/photos/6191803854900514816/6376676625498603520/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 2,
+address: '1234 Testing Avenue',
+city: 'Reno',
+state: 'NV',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Aurora Villa',
+description: 'A comfortable place to stay',
+price: 500,
+previewImage: 'https://images2.dwell.com/photos/6063391372700811264/6331209754087108608/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 3,
+address: '1234 Testing Avenue',
+city: 'Las Cruces',
+state: 'NM',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Phoenix Star House',
+description: 'A comfortable place to stay',
+price: 1500,
+previewImage: 'https://images2.dwell.com/photos/6191803854900514816/6417240469337055232/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 1,
+address: '1234 Testing Avenue',
+city: 'Sacramento',
+state: 'CA',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Celestial Chalet',
+description: 'A comfortable place to stay',
+price: 400,
+previewImage: 'https://images2.dwell.com/photos/6063391372700811264/6133436827626749952/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 2,
+address: '1234 Testing Avenue',
+city: 'Davis',
+state: 'CA',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Jupiter\'s Palace',
+description: 'A comfortable place to stay',
+price: 800,
+previewImage: 'https://images2.dwell.com/photos/6133553759298379776/6393158300026712064/original.jpg?auto=format&q=35&w=1600'
+},
+{
+ownerId: 3,
+address: '1234 Testing Avenue',
+city: 'Berkeley',
+state: 'CA',
+country: 'USA',
+lat: 37.2431,
+lng: 115.7930,
+name: 'Venus Vista',
+description: 'A comfortable place to stay',
+price: 150,
+previewImage: 'https://images2.dwell.com/photos/6133553759298379776/6393158342875275264/original.jpg?auto=format&q=35&w=1600'
+},
+{
+  ownerId: 3,
+  address: '1234 Testing Avenue',
+  city: 'Daly City',
+  state: 'CA',
+  country: 'USA',
+  lat: 37.2431,
+  lng: 115.7930,
+  name: 'Phoenix Star House',
+  description: 'A comfortable place to stay',
+  price: 1500,
+  previewImage: 'https://st.houzz.com/simgs/cfb1fb090fb9f0f4_8-2445/contemporary-home-theater.jpg'
+  },
+  {
+  ownerId: 1,
+  address: '1234 Testing Avenue',
+  city: 'Fullerton',
+  state: 'CA',
+  country: 'USA',
+  lat: 37.2431,
+  lng: 115.7930,
+  name: 'Celestial Chalet',
+  description: 'A comfortable place to stay',
+  price: 400,
+  previewImage: 'https://st.houzz.com/simgs/6541e9fa03336a7d_8-8528/eclectic-laundry-room.jpg'
+  },
+  {
+  ownerId: 2,
+  address: '1234 Testing Avenue',
+  city: 'Stanford',
+  state: 'CA',
+  country: 'USA',
+  lat: 37.2431,
+  lng: 115.7930,
+  name: 'Jupiter\'s Palace',
+  description: 'A comfortable place to stay',
+  price: 800,
+  previewImage: 'https://st.houzz.com/simgs/7f3135170f8db882_8-0178/contemporary-kitchen.jpg'
+  },
+  {
+  ownerId: 3,
+  address: '1234 Testing Avenue',
+  city: 'Del Mar',
+  state: 'CA',
+  country: 'USA',
+  lat: 37.2431,
+  lng: 115.7930,
+  name: 'Venus Vista',
+  description: 'A comfortable place to stay',
+  price: 150,
+  previewImage: 'https://st.houzz.com/simgs/5c91b9240d4086ed_8-7011/contemporary-wine-cellar.jpg'
+  }
     ], {});
   },
 
