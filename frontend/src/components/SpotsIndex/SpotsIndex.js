@@ -34,8 +34,6 @@ const SpotsIndex = () => {
           ))
         }
       </ul>
-      {/* <Link to="/books/new">Add New Book</Link>
-      <button onClick={resetBookData}>Reset Book Data</button> */}
     </section>
   );
 }

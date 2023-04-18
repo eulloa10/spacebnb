@@ -18,16 +18,26 @@ const SpotIndexItem = ({ spot }) => {
 
   return (
     <>
-    <li>
+    <li className="individual-spot">
       <Link className="spot-link" to={`/all/spots/${spot.id}`}>
         <div className="spot">
           <div>
             <img className="spot-image" src={`${spot.previewImage}`} alt="spot"/>
           </div>
-          <div>
-            <div className="spot-name">{spot.name}</div>
-            <div className="landing-city-state">{spot.city}, {spot.state}</div>
-            <div className="night"><span className="spot-price">${spot.price}</span> night</div>
+          <div className="spot-details">
+            <div className="landing-city-state">    {spot.city}, {spot.state}
+            </div>
+            <div className="index-spot-name">
+              {spot.name}
+            </div>
+            <div className="night">
+              <span className="spot-price">
+              ${spot.price}
+              </span>
+              <span className="night-phrase">
+                night
+              </span>
+            </div>
           </div>
         </div>
       </Link>
