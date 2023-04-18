@@ -1,10 +1,11 @@
 import React from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session'
 import './Navigation.css';
-import spaceIcon from '../../images/spaceicon.png'
+import spaceIcon from '../../images/spaceicon.png';
+import ghIcon from '../../images/ghicon2.png';
 
 function Navigation({ isLoaded }){
   const dispatch = useDispatch();
@@ -29,11 +30,9 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-
-          <NavLink className="login-container" to="/account/signin"><button className='login-button'>Log In</button></NavLink>
-          <NavLink className="signup-container" to="/account/signup"><button className='signup-button'>Sign Up</button></NavLink>
-          <NavLink className="demo-container" onClick={logInDemoUser} to="/"><button className='demo-user-button'>Demo User</button></NavLink>
-
+        <NavLink className="login-container" to="/account/signin"><button className='login-button'>Log In</button></NavLink>
+        <NavLink className="signup-container" to="/account/signup"><button className='signup-button'>Sign Up</button></NavLink>
+        <NavLink className="demo-container" onClick={logInDemoUser} to="/"><button className='demo-user-button'>Demo User</button></NavLink>
       </>
     );
   }
@@ -44,7 +43,10 @@ function Navigation({ isLoaded }){
       <ul className='main-header-options'>
         <li className='space-home'>
           <NavLink className='home' exact to="/">
-            <img src={spaceIcon} alt="icon"/>spacebnb
+            <img src={spaceIcon} alt="icon"/>
+            <span className="spacebnb-logo-text">
+              spacebnb
+            </span>
           </NavLink>
         </li>
         <li className='session-links'>
@@ -56,13 +58,16 @@ function Navigation({ isLoaded }){
       currentPath.pathname === "/" &&
       <footer className='main-footer'>
         <ul className="footer-details">
-          <li>&copy; 2022 Spacebnb</li>
-          <li className="about-link-container"><a className="about-link" href="https://github.com/eulloa10/airbnb">About</a></li>
+          <li className="spacebnb-copyright">&copy; 2022 Spacebnb</li>
+          <li className="about-link-container">
+            <a className="about-link" href="https://github.com/eulloa10/airbnb">
+              <img className="gh-icon" src={ghIcon} alt="gh icon"/>
+            </a>
+          </li>
         </ul>
       </footer>
     }
     </>
-
   );
 }
 
