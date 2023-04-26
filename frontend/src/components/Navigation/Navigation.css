@@ -90,7 +90,7 @@
 }
 
 .about-link-container {
-  margin-left: 2%;
+  padding-left: 2%;
 }
 
 .about-link {
@@ -114,6 +114,6 @@ text-decoration: none;
 }
 
 .gh-icon {
-  height: 1.75em;
-  width: 1.75em;
+  height: 1.5em;
+  width: 1.5em;
 }

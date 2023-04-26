@@ -3,8 +3,8 @@
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
 
 ul {
   list-style: none;
@@ -15,8 +15,10 @@ li {
 }
 
 body {
-  /* height: 100vw;
-  margin: 0;
-  padding: 0; */
-  /* position: relative; */
+  height: 100vh;
+}
+
+#huntr-react-container-2 {
+  height: 0%;
+  width: 0%;
 }

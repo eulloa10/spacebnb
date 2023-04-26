@@ -23,7 +23,7 @@ const SpotsIndex = () => {
   }
 
   return (
-    <section className="all-spots">
+    <section className="spots-container">
       <ul className="allSpots">
         {
           allSpotsList.map(spot => (
