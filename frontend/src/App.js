@@ -23,7 +23,7 @@ function App() {
 
   return isLoaded && (
     <>
-    {/* <Navigation isLoaded={isLoaded} /> */}
+    <Navigation isLoaded={isLoaded} />
     {isLoaded && (
       <Switch>
         <Route path="/account/signin">
@@ -33,16 +33,10 @@ function App() {
           <SignupFormPage />
         </Route>
         <Route exact path="/">
-          <>
-            <Navigation isLoaded={isLoaded} />
             <SpotsIndex />
-          </>
         </Route>
         <Route exact path="/all/spots/:spotId">
-          <>
-            <Navigation isLoaded={isLoaded} />
             <SpotShow />
-          </>
         </Route>
         <Route exact path="/user/spots">
           <MySpotsIndex />
