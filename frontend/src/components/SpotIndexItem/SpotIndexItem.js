@@ -32,7 +32,7 @@ const SpotIndexItem = ({ spot }) => {
             </div>
             <div className="night">
               <span className="spot-price">
-              ${spot.price}
+              ${spot.price.toLocaleString("en-US")}
               </span>
               <span className="night-phrase">
                 night
