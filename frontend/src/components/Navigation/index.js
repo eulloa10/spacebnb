@@ -29,11 +29,11 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
-      <>
+      <div className="session-links">
         <NavLink className="login-container" to="/account/signin"><button className='login-button'>Log In</button></NavLink>
         <NavLink className="signup-container" to="/account/signup"><button className='signup-button'>Sign Up</button></NavLink>
         <NavLink className="demo-container" onClick={logInDemoUser} to="/"><button className='demo-user-button'>Demo User</button></NavLink>
-      </>
+      </div>
     );
   }
 
