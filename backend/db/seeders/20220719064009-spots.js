@@ -20,7 +20,7 @@ module.exports = {
        name: 'Galactic Getaway',
        description: 'A comfortable place to stay',
        price: 199,
-       previewImage: 'https://www.somagnews.com/wp-content/uploads/2020/02/b1-21-e1582998385352.jpg'
+       previewImage: 'https://cdn.thespaces.com/wp-content/uploads/2018/07/Marsha-3d-printed-home-for-mars-ai-space-factory.jpg'
      },
      {
       ownerId: 2,
